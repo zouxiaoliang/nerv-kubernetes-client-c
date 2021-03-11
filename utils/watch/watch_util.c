@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
-#include "../../client/include/list.h"
+#include "../../kubernetes/include/list.h"
 #include "watch_util.h"
 
 #define JSON_ARRAY_DELIM "\r\n"

@@ -12,7 +12,7 @@
 #include "exec_provider.h"
 #include "authn_plugin/authn_plugin.h"
 
-#include "../../client/include/apiClient.h"
+#include "../../kubernetes/include/apiClient.h"
 
 #define ENV_KUBECONFIG "KUBECONFIG"
 #define ENV_HOME "HOME"

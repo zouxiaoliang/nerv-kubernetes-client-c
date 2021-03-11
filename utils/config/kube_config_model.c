@@ -1,7 +1,7 @@
 #include "kube_config_model.h"
 #include <stdlib.h>
 
-#include "../../client/include/keyValuePair.h"
+#include "../../kubernetes/include/keyValuePair.h"
 
 void kubeconfig_free_string_list(char **string_list, int count)
 {

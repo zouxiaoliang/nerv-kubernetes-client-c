@@ -8,7 +8,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET default)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN OFF)
 set(CMAKE_BUILD_TYPE Debug)
 
-add_subdirectory(client)
+add_subdirectory(kubernetes)
 
 include_directories(
     config
@@ -39,21 +39,21 @@ target_link_libraries(nerv-${pkgName} ${pkgName} yaml)
 install(TARGETS nerv-${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 #install head files to destination
-file(GLOB HEAD_FILES "client/include/*.h")
+file(GLOB HEAD_FILES "kubernetes/include/*.h")
 message(STATUS "include head files: ${PUBLIC_HEAD_FILES}")
-install(FILES ${HEAD_FILES} DESTINATION include/kubernetes-c/client/include )
+install(FILES ${HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/include )
 
-file(GLOB API_HEAD_FILES "client/api/*.h")
+file(GLOB API_HEAD_FILES "kubernetes/api/*.h")
 message(STATUS "api head files: ${API_HEAD_FILES}")
-install(FILES ${API_HEAD_FILES} DESTINATION include/kubernetes-c/client/api )
+install(FILES ${API_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/api )
 
-file(GLOB MODEL_HEAD_FILES "client/model/*.h")
+file(GLOB MODEL_HEAD_FILES "kubernetes/model/*.h")
 message(STATUS "model head files: ${MODEL_HEAD_FILES}")
-install(FILES ${MODEL_HEAD_FILES} DESTINATION include/kubernetes-c/client/model )
+install(FILES ${MODEL_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/model )
 
-file(GLOB EXTERNAL_HEAD_FILES "client/external/*.h")
+file(GLOB EXTERNAL_HEAD_FILES "kubernetes/external/*.h")
 message(STATUS "external head files: ${EXTERNAL_HEAD_FILES}")
-install(FILES ${EXTERNAL_HEAD_FILES} DESTINATION include/kubernetes-c/client/external )
+install(FILES ${EXTERNAL_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/external )
 
 file(GLOB CONFIG_HEAD_FILES "utils/config/*.h")
 message(STATUS "config head files: ${CONFIG_HEAD_FILES}")

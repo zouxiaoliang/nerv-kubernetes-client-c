@@ -1,7 +1,7 @@
 #include "authn_plugin_util.h"
 #include <errno.h>
 
-#include "../../../client/include/apiClient.h"
+#include "../../../kubernetes/include/apiClient.h"
 
 int shc_request(char **p_http_response, int *p_http_response_length, char *type, const char *url, sslConfig_t * sc, list_t * apiKeys, list_t * contentType, char *post_data)
 {

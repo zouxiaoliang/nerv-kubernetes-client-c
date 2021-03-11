@@ -6,7 +6,7 @@
 #include "incluster_config.h"
 #include "kube_config_common.h"
 
-#include "../../client/include/apiClient.h"
+#include "../../kubernetes/include/apiClient.h"
 
 #define SERVICE_HOST_ENV_NAME "KUBERNETES_SERVICE_HOST"
 #define SERVICE_PORT_ENV_NAME "KUBERNETES_SERVICE_PORT"

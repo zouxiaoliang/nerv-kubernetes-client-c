@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#include "../../client/include/keyValuePair.h"
+#include "../../kubernetes/include/keyValuePair.h"
 
 #define ARGS_DELIM " "
 #define KUBECONFIG_EXEC_ARGS_BUFFER_SIZE 1024

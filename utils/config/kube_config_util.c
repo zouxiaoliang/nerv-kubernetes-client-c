@@ -4,7 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../../client/include/apiClient.h"
+
+#include "../../kubernetes/include/apiClient.h"
 
 #define KUBE_CONFIG_TEMPFILE_NAME_TEMPLATE "/tmp/kubeconfig-XXXXXX"
 

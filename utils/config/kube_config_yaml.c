@@ -2,7 +2,7 @@
 #include <errno.h>
 #include "kube_config_yaml.h"
 
-#include "../../client/include/keyValuePair.h"
+#include "../../kubernetes/include/keyValuePair.h"
 
 /*
 A valid sequence of events should obey the grammar :
