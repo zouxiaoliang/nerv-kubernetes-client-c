@@ -5,10 +5,20 @@
 extern "C" {
 #endif
 
+typedef struct apiClient_t apiClient_t;
+
 typedef void (*KUBE_WATCH_EVENT_HANDLER_FUNC)(void* userptr, const char*);
 
-void kubernets_watch_handler(void** pData, long* pDataLen, KUBE_WATCH_EVENT_HANDLER_FUNC event_hander, void *userptr);
+/**
+ * @brief attach_watch bind a watch to the client
+ * @param apiClient client
+ * @param event_handler handle
+ * @param userptr userptr
+ * @post set api watch is 1
+ */
+void attach_watch(apiClient_t *apiClient, KUBE_WATCH_EVENT_HANDLER_FUNC event_handler, void* userptr);
 
+void detach_watch(apiClient_t *apiClient);
 #ifdef  __cplusplus
 }
 #endif

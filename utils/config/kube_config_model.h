@@ -1,11 +1,11 @@
 #ifndef _KUBE_CONFIG_MODEL_H
 #define _KUBE_CONFIG_MODEL_H
 
-typedef struct keyValuePair_t keyValuePair_t;
-
 #ifdef  __cplusplus
 extern "C" {
 #endif
+
+    typedef struct keyValuePair_t keyValuePair_t;
 
     typedef enum ExecCredential_type_t {
         EXEC_CREDENTIAL_TYPE_TOKEN = 1,

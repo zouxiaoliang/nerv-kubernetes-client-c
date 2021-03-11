@@ -1,12 +1,12 @@
 #ifndef _KUBE_CONFIG_H
 #define _KUBE_CONFIG_H
 
-typedef struct sslConfig_t sslConfig_t;
-typedef struct list_t list_t;
-
 #ifdef  __cplusplus
 extern "C" {
 #endif
+
+typedef struct sslConfig_t sslConfig_t;
+typedef struct list_t list_t;
 
 /*
  * load_kube_config
