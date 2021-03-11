@@ -1,0 +1,39 @@
+/*
+ * io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation.h
+ *
+ * ExternalDocumentation allows referencing an external resource for extended documentation.
+ */
+
+#ifndef _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_H_
+#define _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t;
+
+
+
+
+typedef struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t {
+    char *description; // string
+    char *url; // string
+
+} io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t;
+
+io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_create(
+    char *description,
+    char *url
+);
+
+void io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_free(io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation);
+
+io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_parseFromJSON(cJSON *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentationJSON);
+
+cJSON *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_convertToJSON(io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation);
+
+#endif /* _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_H_ */
+

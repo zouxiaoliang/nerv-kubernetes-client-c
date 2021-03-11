@@ -1,0 +1,40 @@
+/*
+ * io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec.h
+ *
+ * PriorityLevelConfigurationSpec specifies the configuration of a priority level.
+ */
+
+#ifndef _io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_H_
+#define _io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t;
+
+#include "io_k8s_api_flowcontrol_v1beta1_limited_priority_level_configuration.h"
+
+
+
+typedef struct io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t {
+    struct io_k8s_api_flowcontrol_v1beta1_limited_priority_level_configuration_t *limited; //model
+    char *type; // string
+
+} io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t;
+
+io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t *io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_create(
+    io_k8s_api_flowcontrol_v1beta1_limited_priority_level_configuration_t *limited,
+    char *type
+);
+
+void io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_free(io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t *io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec);
+
+io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t *io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_parseFromJSON(cJSON *io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_specJSON);
+
+cJSON *io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_convertToJSON(io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t *io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec);
+
+#endif /* _io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_H_ */
+

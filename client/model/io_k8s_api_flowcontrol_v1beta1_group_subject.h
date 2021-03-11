@@ -1,0 +1,37 @@
+/*
+ * io_k8s_api_flowcontrol_v1beta1_group_subject.h
+ *
+ * GroupSubject holds detailed information for group-kind subject.
+ */
+
+#ifndef _io_k8s_api_flowcontrol_v1beta1_group_subject_H_
+#define _io_k8s_api_flowcontrol_v1beta1_group_subject_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_api_flowcontrol_v1beta1_group_subject_t io_k8s_api_flowcontrol_v1beta1_group_subject_t;
+
+
+
+
+typedef struct io_k8s_api_flowcontrol_v1beta1_group_subject_t {
+    char *name; // string
+
+} io_k8s_api_flowcontrol_v1beta1_group_subject_t;
+
+io_k8s_api_flowcontrol_v1beta1_group_subject_t *io_k8s_api_flowcontrol_v1beta1_group_subject_create(
+    char *name
+);
+
+void io_k8s_api_flowcontrol_v1beta1_group_subject_free(io_k8s_api_flowcontrol_v1beta1_group_subject_t *io_k8s_api_flowcontrol_v1beta1_group_subject);
+
+io_k8s_api_flowcontrol_v1beta1_group_subject_t *io_k8s_api_flowcontrol_v1beta1_group_subject_parseFromJSON(cJSON *io_k8s_api_flowcontrol_v1beta1_group_subjectJSON);
+
+cJSON *io_k8s_api_flowcontrol_v1beta1_group_subject_convertToJSON(io_k8s_api_flowcontrol_v1beta1_group_subject_t *io_k8s_api_flowcontrol_v1beta1_group_subject);
+
+#endif /* _io_k8s_api_flowcontrol_v1beta1_group_subject_H_ */
+

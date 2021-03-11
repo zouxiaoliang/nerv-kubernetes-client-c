@@ -1,0 +1,40 @@
+/*
+ * io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior.h
+ *
+ * HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).
+ */
+
+#ifndef _io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_H_
+#define _io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t;
+
+#include "io_k8s_api_autoscaling_v2beta2_hpa_scaling_rules.h"
+
+
+
+typedef struct io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t {
+    struct io_k8s_api_autoscaling_v2beta2_hpa_scaling_rules_t *scale_down; //model
+    struct io_k8s_api_autoscaling_v2beta2_hpa_scaling_rules_t *scale_up; //model
+
+} io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t;
+
+io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t *io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_create(
+    io_k8s_api_autoscaling_v2beta2_hpa_scaling_rules_t *scale_down,
+    io_k8s_api_autoscaling_v2beta2_hpa_scaling_rules_t *scale_up
+);
+
+void io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_free(io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t *io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior);
+
+io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t *io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_parseFromJSON(cJSON *io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behaviorJSON);
+
+cJSON *io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_convertToJSON(io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t *io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior);
+
+#endif /* _io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_H_ */
+

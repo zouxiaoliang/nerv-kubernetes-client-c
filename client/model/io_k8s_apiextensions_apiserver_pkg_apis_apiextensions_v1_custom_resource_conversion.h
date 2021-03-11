@@ -1,0 +1,40 @@
+/*
+ * io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion.h
+ *
+ * CustomResourceConversion describes how to convert different versions of a CR.
+ */
+
+#ifndef _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_H_
+#define _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t;
+
+#include "io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion.h"
+
+
+
+typedef struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t {
+    char *strategy; // string
+    struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t *webhook; //model
+
+} io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t;
+
+io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_create(
+    char *strategy,
+    io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t *webhook
+);
+
+void io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_free(io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion);
+
+io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_parseFromJSON(cJSON *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversionJSON);
+
+cJSON *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_convertToJSON(io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion);
+
+#endif /* _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_H_ */
+

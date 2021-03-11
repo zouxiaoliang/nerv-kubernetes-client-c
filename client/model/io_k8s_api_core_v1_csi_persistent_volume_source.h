@@ -1,0 +1,54 @@
+/*
+ * io_k8s_api_core_v1_csi_persistent_volume_source.h
+ *
+ * Represents storage that is managed by an external CSI volume driver (Beta feature)
+ */
+
+#ifndef _io_k8s_api_core_v1_csi_persistent_volume_source_H_
+#define _io_k8s_api_core_v1_csi_persistent_volume_source_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_api_core_v1_csi_persistent_volume_source_t io_k8s_api_core_v1_csi_persistent_volume_source_t;
+
+#include "io_k8s_api_core_v1_secret_reference.h"
+
+
+
+typedef struct io_k8s_api_core_v1_csi_persistent_volume_source_t {
+    struct io_k8s_api_core_v1_secret_reference_t *controller_expand_secret_ref; //model
+    struct io_k8s_api_core_v1_secret_reference_t *controller_publish_secret_ref; //model
+    char *driver; // string
+    char *fs_type; // string
+    struct io_k8s_api_core_v1_secret_reference_t *node_publish_secret_ref; //model
+    struct io_k8s_api_core_v1_secret_reference_t *node_stage_secret_ref; //model
+    int read_only; //boolean
+    list_t* volume_attributes; //map
+    char *volume_handle; // string
+
+} io_k8s_api_core_v1_csi_persistent_volume_source_t;
+
+io_k8s_api_core_v1_csi_persistent_volume_source_t *io_k8s_api_core_v1_csi_persistent_volume_source_create(
+    io_k8s_api_core_v1_secret_reference_t *controller_expand_secret_ref,
+    io_k8s_api_core_v1_secret_reference_t *controller_publish_secret_ref,
+    char *driver,
+    char *fs_type,
+    io_k8s_api_core_v1_secret_reference_t *node_publish_secret_ref,
+    io_k8s_api_core_v1_secret_reference_t *node_stage_secret_ref,
+    int read_only,
+    list_t* volume_attributes,
+    char *volume_handle
+);
+
+void io_k8s_api_core_v1_csi_persistent_volume_source_free(io_k8s_api_core_v1_csi_persistent_volume_source_t *io_k8s_api_core_v1_csi_persistent_volume_source);
+
+io_k8s_api_core_v1_csi_persistent_volume_source_t *io_k8s_api_core_v1_csi_persistent_volume_source_parseFromJSON(cJSON *io_k8s_api_core_v1_csi_persistent_volume_sourceJSON);
+
+cJSON *io_k8s_api_core_v1_csi_persistent_volume_source_convertToJSON(io_k8s_api_core_v1_csi_persistent_volume_source_t *io_k8s_api_core_v1_csi_persistent_volume_source);
+
+#endif /* _io_k8s_api_core_v1_csi_persistent_volume_source_H_ */
+

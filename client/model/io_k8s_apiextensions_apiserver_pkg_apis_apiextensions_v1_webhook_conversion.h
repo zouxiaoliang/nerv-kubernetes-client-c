@@ -1,0 +1,40 @@
+/*
+ * io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion.h
+ *
+ * WebhookConversion describes how to call a conversion webhook
+ */
+
+#ifndef _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_H_
+#define _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t;
+
+#include "io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_client_config.h"
+
+
+
+typedef struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t {
+    struct io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_client_config_t *client_config; //model
+    list_t *conversion_review_versions; //primitive container
+
+} io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t;
+
+io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_create(
+    io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_client_config_t *client_config,
+    list_t *conversion_review_versions
+);
+
+void io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_free(io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion);
+
+io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_parseFromJSON(cJSON *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversionJSON);
+
+cJSON *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_convertToJSON(io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t *io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion);
+
+#endif /* _io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_H_ */
+

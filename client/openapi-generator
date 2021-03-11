@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#example: openapi-generate-cli generate -i swagger.json -g c
+
+type java >/dev/null 2>&1 && { java -jar openapi-generator-cli.jar "$@"; }
