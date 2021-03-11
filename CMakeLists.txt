@@ -8,7 +8,10 @@ set(CMAKE_CXX_VISIBILITY_PRESET default)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN OFF)
 set(CMAKE_BUILD_TYPE Debug)
 
+option(SHOW_INSTALL_FILES "show the install files." OFF)
+
 add_subdirectory(kubernetes)
+add_subdirectory(examples)
 
 include_directories(
     config
@@ -40,25 +43,28 @@ install(TARGETS nerv-${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 #install head files to destination
 file(GLOB HEAD_FILES "kubernetes/include/*.h")
-message(STATUS "include head files: ${PUBLIC_HEAD_FILES}")
 install(FILES ${HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/include )
 
 file(GLOB API_HEAD_FILES "kubernetes/api/*.h")
-message(STATUS "api head files: ${API_HEAD_FILES}")
 install(FILES ${API_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/api )
 
 file(GLOB MODEL_HEAD_FILES "kubernetes/model/*.h")
-message(STATUS "model head files: ${MODEL_HEAD_FILES}")
 install(FILES ${MODEL_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/model )
 
 file(GLOB EXTERNAL_HEAD_FILES "kubernetes/external/*.h")
-message(STATUS "external head files: ${EXTERNAL_HEAD_FILES}")
 install(FILES ${EXTERNAL_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes/external )
 
 file(GLOB CONFIG_HEAD_FILES "utils/config/*.h")
-message(STATUS "config head files: ${CONFIG_HEAD_FILES}")
 install(FILES ${CONFIG_HEAD_FILES} DESTINATION include/kubernetes-c/utils/config )
 
 file(GLOB MODEL_HEAD_FILES "utils/watch/*.h")
-message(STATUS "watch head files: ${MODEL_HEAD_FILES}")
 install(FILES ${MODEL_HEAD_FILES} DESTINATION include/kubernetes-c/utisl/watch )
+
+if(SHOW_INSTALL_FILES)
+    message(STATUS "include head files: ${PUBLIC_HEAD_FILES}")
+    message(STATUS "api head files: ${API_HEAD_FILES}")
+    message(STATUS "model head files: ${MODEL_HEAD_FILES}")
+    message(STATUS "external head files: ${EXTERNAL_HEAD_FILES}")
+    message(STATUS "config head files: ${CONFIG_HEAD_FILES}")
+    message(STATUS "watch head files: ${MODEL_HEAD_FILES}")
+endif()
