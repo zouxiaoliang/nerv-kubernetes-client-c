@@ -1,25 +1,136 @@
-# Kubernetes Template Project
+# Kubernetes Client Library for C
 
-The Kubernetes Template Project is a template for starting new projects in the GitHub organizations owned by Kubernetes. All Kubernetes projects, at minimum, must have the following files:
+[![Code Check](https://github.com/kubernetes-client/c/workflows/Code%20Check/badge.svg)](https://github.com/kubernetes-client/c/actions?query=workflow%3A%22Code+Check%22)
+[![Build](https://github.com/kubernetes-client/c/workflows/Build/badge.svg)](https://github.com/kubernetes-client/c/actions?query=workflow%3ABuild)
 
-- a `README.md` outlining the project goals, sponsoring sig, and community contact information
-- an `OWNERS` with the project leads listed as approvers ([docs on `OWNERS` files][owners])
-- a `CONTRIBUTING.md` outlining how to contribute to the project
-- an unmodified copy of `code-of-conduct.md` from this repo, which outlines community behavior and the consequences of breaking the code
-- a `LICENSE` which must be Apache 2.0 for code projects, or [Creative Commons 4.0] for documentation repositories, without any custom content
-- a `SECURITY_CONTACTS` with the contact points for the Product Security Team 
-  to reach out to for triaging and handling of incoming issues. They must agree to abide by the
-  [Embargo Policy](https://git.k8s.io/security/private-distributors-list.md#embargo-policy)
-  and will be removed and replaced if they violate that agreement.
+This is the official Kubernetes client library for the C programming language.
+It is a work in progress and should be considered _alpha_ quality software at this
+time.
 
-## Community, discussion, contribution, and support
+## Building the library
+```bash
+# Clone the repo
+git clone https://github.com/zouxiaoliang/nerv-kubernetes-client-c.git
+CLIENT_REPO_ROOT=${PWD}/nerv-kubernetes-client-c
 
-Learn how to engage with the Kubernetes community on the [community page](http://kubernetes.io/community/).
+# Install pre-requisites on ubuntu
+sudo apt-get install libssl-dev libcurl4-openssl-dev uncrustify libyaml-dev
 
-You can reach the maintainers of this project at:
+# Move into the Kubernetes directory
+cd ${CLIENT_REPO_ROOT}
 
-- [Slack](http://slack.k8s.io/)
-- [Mailing List](https://groups.google.com/forum/#!forum/kubernetes-dev)
+# Build
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/ ..
+make
+sudo make install
+```
+
+## Running the example
+```bash
+./list_pod_bin
+```
+
+## Usage example
+
+list all pods:
+
+```c
+    char *basePath = NULL;
+    sslConfig_t *sslConfig = NULL;
+    list_t *apiKeys = NULL;
+    int rc = load_kube_config(&basePath, &sslConfig, &apiKeys, NULL);/* NULL means loading configuration from $HOME/.kube/config */
+    if (rc != 0) {
+        printf("Cannot load kubernetes configuration.\n");
+        return -1;
+    }
+    apiClient_t *apiClient = apiClient_create_with_base_path(basePath, sslConfig, apiKeys);
+    if (!apiClient) {
+        printf("Cannot create a kubernetes client.\n");
+        return -1;
+    }
+
+    v1_pod_list_t *pod_list = NULL;
+    pod_list = CoreV1API_listNamespacedPod(apiClient,
+                                          "default",    /*namespace */
+                                           NULL,    /* pretty */
+                                           0,       /* allowWatchBookmarks */
+                                           NULL,    /* continue */
+                                           NULL,    /* fieldSelector */
+                                           NULL,    /* labelSelector */
+                                           0,       /* limit */
+                                           NULL,    /* resourceVersion */
+                                           0,       /* timeoutSeconds */
+                                           0        /* watch */
+        );
+    printf("return code=%ld\n", apiClient->response_code);
+    if (pod_list) {
+      ...
+    }
+
+    apiClient_free(apiClient);
+    apiClient = NULL;
+    free_client_config(basePath, sslConfig, apiKeys);
+    basePath = NULL;
+    sslConfig = NULL;
+    apiKeys = NULL;
+    apiClient_unsetupGlobalEnv();
+```
+
+list all pods in cluster:
+
+```c
+    char *basePath = NULL;
+    sslConfig_t *sslConfig = NULL;
+    list_t *apiKeys = NULL;
+    int rc = load_incluster_config(&basePath, &sslConfig, &apiKeys);
+    if (rc != 0) {
+        printf("Cannot load kubernetes configuration in cluster.\n");
+        return -1;
+    }
+    apiClient_t *apiClient = apiClient_create_with_base_path(basePath, sslConfig, apiKeys);
+    if (!apiClient) {
+        printf("Cannot create a kubernetes client.\n");
+        return -1;
+    }
+
+    v1_pod_list_t *pod_list = NULL;
+    pod_list = CoreV1API_listNamespacedPod(apiClient,
+                                          "default",    /*namespace */
+                                           NULL,    /* pretty */
+                                           0,       /* allowWatchBookmarks */
+                                           NULL,    /* continue */
+                                           NULL,    /* fieldSelector */
+                                           NULL,    /* labelSelector */
+                                           0,       /* limit */
+                                           NULL,    /* resourceVersion */
+                                           0,       /* timeoutSeconds */
+                                           0        /* watch */
+        );
+    printf("return code=%ld\n", apiClient->response_code);
+    if (pod_list) {
+      ...
+    }
+
+    apiClient_free(apiClient);
+    apiClient = NULL;
+    free_client_config(basePath, sslConfig, apiKeys);
+    basePath = NULL;
+    sslConfig = NULL;
+    apiKeys = NULL;
+    apiClient_unsetupGlobalEnv();
+```
+
+## Multi-threaded Usage
+
+If the C client library is used in multi-threaded program, the following 2 actions are required:
+
+1. After the program starts up, main thread must call the function ```apiClient_setupGlobalEnv()``` before any worker thread is created.
+
+2. If the C client is no longer used, main thread must call the function ```apiClient_unsetupGlobalEnv()``` after all worker threads end.
+
+Refer to the [example](https://github.com/zouxiaoliang/nerv-kubernetes-client-c/tree/master/examples) for detail. 
 
 ### Code of conduct
 
@@ -27,3 +138,6 @@ Participation in the Kubernetes community is governed by the [Kubernetes Code of
 
 [owners]: https://git.k8s.io/community/contributors/guide/owners.md
 [Creative Commons 4.0]: https://git.k8s.io/website/LICENSE
+
+## References & Note
+A lot of source code copy from [kubernetes/c](https://github.com/kubernetes-client/c)

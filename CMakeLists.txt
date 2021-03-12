@@ -19,6 +19,7 @@ include_directories(
     watch
 )
 
+aux_source_directory(utils SOURCES)
 aux_source_directory(utils/config SOURCES)
 aux_source_directory(utils/config/authn_plugin SOURCES)
 aux_source_directory(utils/watch SOURCES)
