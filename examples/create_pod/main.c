@@ -1,23 +1,21 @@
 #include <kube_config.h>
 #include <apiClient.h>
 #include <CoreV1API.h>
+#include <alias.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
-
-#define NS_API(type) io_k8s_api_core_##type
-#define NS_API_META(type) io_k8s_apimachinery_pkg_apis_meta_##type
 
 void create_a_pod(apiClient_t * apiClient)
 {
     char *namespace = "default";
 
-    NS_API(v1_pod_t) *podinfo = calloc(1, sizeof(NS_API(v1_pod_t)));
+    v1_pod_t *podinfo = calloc(1, sizeof(NS_API(v1_pod_t)));
     podinfo->api_version = strdup("v1");
     podinfo->kind = strdup("Pod");
     podinfo->spec = calloc(1, sizeof(NS_API(v1_pod_spec_t)));
 
-    podinfo->metadata = calloc(1, sizeof(NS_API_META(v1_object_meta_t)));
+    podinfo->metadata = calloc(1, sizeof(NS_META_TYPE(v1_object_meta_t)));
     /* set pod name */
     podinfo->metadata->name = strdup("test-pod-6");
 
