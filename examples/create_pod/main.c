@@ -10,18 +10,18 @@ void create_a_pod(apiClient_t * apiClient)
 {
     char *namespace = "default";
 
-    v1_pod_t *podinfo = calloc(1, sizeof(NS_API(v1_pod_t)));
+    v1_pod_t *podinfo = calloc(1, sizeof(v1_pod_t));
     podinfo->api_version = strdup("v1");
     podinfo->kind = strdup("Pod");
-    podinfo->spec = calloc(1, sizeof(NS_API(v1_pod_spec_t)));
+    podinfo->spec = calloc(1, sizeof(v1_pod_spec_t));
 
-    podinfo->metadata = calloc(1, sizeof(NS_META_TYPE(v1_object_meta_t)));
+    podinfo->metadata = calloc(1, sizeof(v1_object_meta_t));
     /* set pod name */
     podinfo->metadata->name = strdup("test-pod-6");
 
     /* set containers for pod */
     list_t *containerlist = list_create();
-    NS_API(v1_container_t) *con = calloc(1, sizeof(NS_API(v1_container_t)));
+    v1_container_t *con = calloc(1, sizeof(v1_container_t));
     con->name = strdup("my-container");
     con->image = strdup("ubuntu:latest");
     con->image_pull_policy = strdup("IfNotPresent");
@@ -39,7 +39,7 @@ void create_a_pod(apiClient_t * apiClient)
 
     /* set volume mounts for container  */
     list_t *volumemounts = list_create();
-    NS_API(v1_volume_mount_t) *volmou = calloc(1, sizeof(NS_API(v1_volume_mount_t)));
+    v1_volume_mount_t *volmou = calloc(1, sizeof(v1_volume_mount_t));
     volmou->mount_path = strdup("/test");
     volmou->name = strdup("test");
     list_addElement(volumemounts, volmou);
@@ -50,10 +50,10 @@ void create_a_pod(apiClient_t * apiClient)
 
     /* set volumes for pod */
     list_t *volumelist = list_create();
-    NS_API(v1_volume_t) *volume = calloc(1, sizeof(NS_API(v1_volume_t)));
+    v1_volume_t *volume = calloc(1, sizeof(v1_volume_t));
     volume->name = strdup("test");
 
-    NS_API(v1_host_path_volume_source_t) *hostPath = calloc(1, sizeof(NS_API(v1_host_path_volume_source_t)));
+    v1_host_path_volume_source_t *hostPath = calloc(1, sizeof(v1_host_path_volume_source_t));
     hostPath->path = strdup("/test");
     volume->host_path = hostPath;
 
@@ -61,7 +61,7 @@ void create_a_pod(apiClient_t * apiClient)
     podinfo->spec->volumes = volumelist;
 
     /* call API in libkubernetes to create pod */
-    NS_API(v1_pod_t) *apod = CoreV1API_createCoreV1NamespacedPod(apiClient, namespace, podinfo, NULL, NULL, NULL);
+    v1_pod_t *apod = CoreV1API_createCoreV1NamespacedPod(apiClient, namespace, podinfo, NULL, NULL, NULL);
     printf("code=%ld\n", apiClient->response_code);
 
     NS_API(v1_pod_free)(apod);

@@ -5,52 +5,1307 @@
 extern "C" {
 #endif
 
+#define NS_API(type) io_k8s_api_core_##type
+
 #define NS_CORE_TYPE(type) io_k8s_api_core_##type
-#define NS_META_TYPE(type) io_k8s_apimachinery_pkg_apis_meta_##type
-#define NS_API(func) io_k8s_api_core_##func
+#define NS_APIMACHINERY_TYPE(type) io_k8s_apimachinery_pkg_apis_meta_##type
+#define NS_AUTHORIZATION_TYPE(type) io_k8s_api_authorization_##type
+#define NS_EVENTS_TYPE(type) io_k8s_api_events_##type
+#define NS_NODE_TYPE(type) io_k8s_api_node_##type
+#define NS_SCHEDULING_TYPE(type) io_k8s_api_scheduling_##type
+#define NS_CERTIFICATES_TYPE(type) io_k8s_api_certificates_##type
+#define NS_APISERVERINTERNAL_TYPE(type) io_k8s_api_apiserverinternal_##type
+#define NS_APPS_TYPE(type) io_k8s_api_apps_##type
+#define NS_AUTHENTICATION_TYPE(type) io_k8s_api_authentication_##type
+#define NS_AUTOSCALING_TYPE(type) io_k8s_api_autoscaling_##type
+#define NS_BATCH_TYPE(type) io_k8s_api_batch_##type
+#define NS_COORDINATION_TYPE(type) io_k8s_api_coordination_##type
+#define NS_RBAC_TYPE(type) rbac_##type
+#define NS_APISERVER_TYPE(type) apiserver_##type
+#define NS_PKG_TYPE(type) pkg_##type
 
 #define core_alias(name) typedef struct NS_CORE_TYPE(name) name
-#define meta_alias(name) typedef struct NS_META_TYPE(name) name
+#define core_alias_by_conflict(name) typedef struct NS_CORE_TYPE(name) name##_for_core
+#define apimachinery_alias(name) typedef struct NS_APIMACHINERY_TYPE(name) name
+#define apimachinery_alias_by_conflict(name) typedef struct NS_APIMACHINERY_TYPE(name) name##_for_apimachinery
+#define authorization_alias(name) typedef struct NS_AUTHORIZATION_TYPE(name) name
+#define authorization_alias_by_conflict(name) typedef struct NS_AUTHORIZATION_TYPE(name) name##_for_authorization
+#define events_alias(name) typedef struct NS_EVENTS_TYPE(name) name
+#define events_alias_by_conflict(name) typedef struct NS_EVENTS_TYPE(name) name##_for_events
+#define node_alias(name) typedef struct NS_NODE_TYPE(name) name
+#define node_alias_by_conflict(name) typedef struct NS_NODE_TYPE(name) name##_for_node
+#define scheduling_alias(name) typedef struct NS_SCHEDULING_TYPE(name) name
+#define scheduling_alias_by_conflict(name) typedef struct NS_SCHEDULING_TYPE(name) name##_for_scheduling
+#define certificates_alias(name) typedef struct NS_CERTIFICATES_TYPE(name) name
+#define certificates_alias_by_conflict(name) typedef struct NS_CERTIFICATES_TYPE(name) name##_for_certificates
+#define apiserverinternal_alias(name) typedef struct NS_APISERVERINTERNAL_TYPE(name) name
+#define apiserverinternal_alias_by_conflict(name) typedef struct NS_APISERVERINTERNAL_TYPE(name) name##_for_apiserverinternal
+#define apps_alias(name) typedef struct NS_APPS_TYPE(name) name
+#define apps_alias_by_conflict(name) typedef struct NS_APPS_TYPE(name) name##_for_apps
+#define authentication_alias(name) typedef struct NS_AUTHENTICATION_TYPE(name) name
+#define authentication_alias_by_conflict(name) typedef struct NS_AUTHENTICATION_TYPE(name) name##_for_authentication
+#define autoscaling_alias(name) typedef struct NS_AUTOSCALING_TYPE(name) name
+#define autoscaling_alias_by_conflict(name) typedef struct NS_AUTOSCALING_TYPE(name) name##_for_autoscaling
+#define batch_alias(name) typedef struct NS_BATCH_TYPE(name) name
+#define batch_alias_by_conflict(name) typedef struct NS_BATCH_TYPE(name) name##_for_batch
+#define coordination_alias(name) typedef struct NS_COORDINATION_TYPE(name) name
+#define coordination_alias_by_conflict(name) typedef struct NS_COORDINATION_TYPE(name) name##_for_coordination
+#define rbac_alias(name) typedef struct NS_RBAC_TYPE(name) name
+#define rbac_alias_by_conflict(name) typedef struct NS_RBAC_TYPE(name) name##_for_rbac
+#define apiserver_alias(name) typedef struct NS_APISERVER_TYPE(name) name
+#define apiserver_alias_by_conflict(name) typedef struct NS_APISERVER_TYPE(name) name##_for_apiserver
+#define pkg_alias(name) typedef struct NS_PKG_TYPE(name) name
+#define pkg_alias_by_conflict(name) typedef struct NS_PKG_TYPE(name) name##_for_pkg
+
 #define function_alias(name)
 
+// core
 core_alias(v1_namespace_t);
+// io_k8s_api_core_v1_namespace_t
 core_alias(v1_binding_t);
+// io_k8s_api_core_v1_binding_t
 core_alias(v1_config_map_t);
+// io_k8s_api_core_v1_config_map_t
 core_alias(v1_endpoints_t);
+// io_k8s_api_core_v1_endpoints_t
 core_alias(v1_event_t);
+// io_k8s_api_core_v1_event_t
 core_alias(v1_limit_range_t);
+// io_k8s_api_core_v1_limit_range_t
 core_alias(v1_persistent_volume_claim_t);
+// io_k8s_api_core_v1_persistent_volume_claim_t
 core_alias(v1_pod_t);
+// io_k8s_api_core_v1_pod_t
 core_alias(v1_pod_template_t);
+// io_k8s_api_core_v1_pod_template_t
 core_alias(v1_replication_controller_t);
+// io_k8s_api_core_v1_replication_controller_t
 core_alias(v1_resource_quota_t);
+// io_k8s_api_core_v1_resource_quota_t
 core_alias(v1_secret_t);
+// io_k8s_api_core_v1_secret_t
 core_alias(v1_service_t);
+// io_k8s_api_core_v1_service_t
 core_alias(v1_service_account_t);
+// io_k8s_api_core_v1_service_account_t
 core_alias(v1_node_t);
+// io_k8s_api_core_v1_node_t
 core_alias(v1_persistent_volume_t);
+// io_k8s_api_core_v1_persistent_volume_t
 core_alias(v1_component_status_list_t);
+// io_k8s_api_core_v1_component_status_list_t
 core_alias(v1_config_map_list_t);
+// io_k8s_api_core_v1_config_map_list_t
 core_alias(v1_endpoints_list_t);
+// io_k8s_api_core_v1_endpoints_list_t
 core_alias(v1_event_list_t);
+// io_k8s_api_core_v1_event_list_t
 core_alias(v1_limit_range_list_t);
+// io_k8s_api_core_v1_limit_range_list_t
 core_alias(v1_namespace_list_t);
+// io_k8s_api_core_v1_namespace_list_t
 core_alias(v1_persistent_volume_claim_list_t);
+// io_k8s_api_core_v1_persistent_volume_claim_list_t
 core_alias(v1_pod_list_t);
+// io_k8s_api_core_v1_pod_list_t
 core_alias(v1_pod_template_list_t);
+// io_k8s_api_core_v1_pod_template_list_t
 core_alias(v1_replication_controller_list_t);
+// io_k8s_api_core_v1_replication_controller_list_t
 core_alias(v1_resource_quota_list_t);
+// io_k8s_api_core_v1_resource_quota_list_t
 core_alias(v1_secret_list_t);
+// io_k8s_api_core_v1_secret_list_t
 core_alias(v1_service_list_t);
+// io_k8s_api_core_v1_service_list_t
 core_alias(v1_service_account_list_t);
+// io_k8s_api_core_v1_service_account_list_t
 core_alias(v1_node_list_t);
+// io_k8s_api_core_v1_node_list_t
 core_alias(v1_persistent_volume_list_t);
+// io_k8s_api_core_v1_persistent_volume_list_t
 core_alias(v1_ephemeral_containers_t);
+// io_k8s_api_core_v1_ephemeral_containers_t
 core_alias(v1_component_status_t);
+// io_k8s_api_core_v1_component_status_t
+core_alias(v1_csi_volume_source_t);
+// io_k8s_api_core_v1_csi_volume_source_t
+core_alias(v1_local_object_reference_t);
+// io_k8s_api_core_v1_local_object_reference_t
+core_alias(v1_flex_persistent_volume_source_t);
+// io_k8s_api_core_v1_flex_persistent_volume_source_t
+core_alias(v1_secret_reference_t);
+// io_k8s_api_core_v1_secret_reference_t
+core_alias(v1_volume_device_t);
+// io_k8s_api_core_v1_volume_device_t
+core_alias(v1_namespace_spec_t);
+// io_k8s_api_core_v1_namespace_spec_t
+core_alias(v1_secret_env_source_t);
+// io_k8s_api_core_v1_secret_env_source_t
+core_alias(v1_pod_security_context_t);
+// io_k8s_api_core_v1_pod_security_context_t
+core_alias(v1_se_linux_options_t);
+// io_k8s_api_core_v1_se_linux_options_t
+core_alias(v1_seccomp_profile_t);
+// io_k8s_api_core_v1_seccomp_profile_t
+core_alias(v1_windows_security_context_options_t);
+// io_k8s_api_core_v1_windows_security_context_options_t
+core_alias(v1_probe_t);
+// io_k8s_api_core_v1_probe_t
+core_alias(v1_exec_action_t);
+// io_k8s_api_core_v1_exec_action_t
+core_alias(v1_http_get_action_t);
+// io_k8s_api_core_v1_http_get_action_t
+core_alias(v1_tcp_socket_action_t);
+// io_k8s_api_core_v1_tcp_socket_action_t
+core_alias(v1_gce_persistent_disk_volume_source_t);
+// io_k8s_api_core_v1_gce_persistent_disk_volume_source_t
+core_alias(v1_object_reference_t);
+// io_k8s_api_core_v1_object_reference_t
+core_alias(v1_env_var_t);
+// io_k8s_api_core_v1_env_var_t
+core_alias(v1_env_var_source_t);
+// io_k8s_api_core_v1_env_var_source_t
+core_alias(v1_downward_api_projection_t);
+// io_k8s_api_core_v1_downward_api_projection_t
+core_alias(v1_node_config_status_t);
+// io_k8s_api_core_v1_node_config_status_t
+core_alias(v1_node_config_source_t);
+// io_k8s_api_core_v1_node_config_source_t
+core_alias(v1_persistent_volume_claim_spec_t);
+// io_k8s_api_core_v1_persistent_volume_claim_spec_t
+core_alias(v1_persistent_volume_claim_status_t);
+// io_k8s_api_core_v1_persistent_volume_claim_status_t
+core_alias(v1_pod_template_spec_t);
+// io_k8s_api_core_v1_pod_template_spec_t
+core_alias(v1_csi_persistent_volume_source_t);
+// io_k8s_api_core_v1_csi_persistent_volume_source_t
+core_alias(v1_resource_quota_spec_t);
+// io_k8s_api_core_v1_resource_quota_spec_t
+core_alias(v1_scope_selector_t);
+// io_k8s_api_core_v1_scope_selector_t
+core_alias(v1_pod_dns_config_option_t);
+// io_k8s_api_core_v1_pod_dns_config_option_t
+core_alias(v1_quobyte_volume_source_t);
+// io_k8s_api_core_v1_quobyte_volume_source_t
+core_alias(v1_service_spec_t);
+// io_k8s_api_core_v1_service_spec_t
+core_alias(v1_service_status_t);
+// io_k8s_api_core_v1_service_status_t
+core_alias(v1_pod_dns_config_t);
+// io_k8s_api_core_v1_pod_dns_config_t
+core_alias(v1_git_repo_volume_source_t);
+// io_k8s_api_core_v1_git_repo_volume_source_t
+core_alias(v1_volume_t);
+// io_k8s_api_core_v1_volume_t
+core_alias(v1_aws_elastic_block_store_volume_source_t);
+// io_k8s_api_core_v1_aws_elastic_block_store_volume_source_t
+core_alias(v1_azure_disk_volume_source_t);
+// io_k8s_api_core_v1_azure_disk_volume_source_t
+core_alias(v1_azure_file_volume_source_t);
+// io_k8s_api_core_v1_azure_file_volume_source_t
+core_alias(v1_ceph_fs_volume_source_t);
+// io_k8s_api_core_v1_ceph_fs_volume_source_t
+core_alias(v1_cinder_volume_source_t);
+// io_k8s_api_core_v1_cinder_volume_source_t
+core_alias(v1_config_map_volume_source_t);
+// io_k8s_api_core_v1_config_map_volume_source_t
+core_alias(v1_downward_api_volume_source_t);
+// io_k8s_api_core_v1_downward_api_volume_source_t
+core_alias(v1_empty_dir_volume_source_t);
+// io_k8s_api_core_v1_empty_dir_volume_source_t
+core_alias(v1_ephemeral_volume_source_t);
+// io_k8s_api_core_v1_ephemeral_volume_source_t
+core_alias(v1_fc_volume_source_t);
+// io_k8s_api_core_v1_fc_volume_source_t
+core_alias(v1_flex_volume_source_t);
+// io_k8s_api_core_v1_flex_volume_source_t
+core_alias(v1_flocker_volume_source_t);
+// io_k8s_api_core_v1_flocker_volume_source_t
+core_alias(v1_glusterfs_volume_source_t);
+// io_k8s_api_core_v1_glusterfs_volume_source_t
+core_alias(v1_host_path_volume_source_t);
+// io_k8s_api_core_v1_host_path_volume_source_t
+core_alias(v1_iscsi_volume_source_t);
+// io_k8s_api_core_v1_iscsi_volume_source_t
+core_alias(v1_nfs_volume_source_t);
+// io_k8s_api_core_v1_nfs_volume_source_t
+core_alias(v1_persistent_volume_claim_volume_source_t);
+// io_k8s_api_core_v1_persistent_volume_claim_volume_source_t
+core_alias(v1_photon_persistent_disk_volume_source_t);
+// io_k8s_api_core_v1_photon_persistent_disk_volume_source_t
+core_alias(v1_portworx_volume_source_t);
+// io_k8s_api_core_v1_portworx_volume_source_t
+core_alias(v1_projected_volume_source_t);
+// io_k8s_api_core_v1_projected_volume_source_t
+core_alias(v1_rbd_volume_source_t);
+// io_k8s_api_core_v1_rbd_volume_source_t
+core_alias(v1_scale_io_volume_source_t);
+// io_k8s_api_core_v1_scale_io_volume_source_t
+core_alias(v1_secret_volume_source_t);
+// io_k8s_api_core_v1_secret_volume_source_t
+core_alias(v1_storage_os_volume_source_t);
+// io_k8s_api_core_v1_storage_os_volume_source_t
+core_alias(v1_vsphere_virtual_disk_volume_source_t);
+// io_k8s_api_core_v1_vsphere_virtual_disk_volume_source_t
+core_alias(v1_config_map_key_selector_t);
+// io_k8s_api_core_v1_config_map_key_selector_t
+core_alias(v1_object_field_selector_t);
+// io_k8s_api_core_v1_object_field_selector_t
+core_alias(v1_resource_field_selector_t);
+// io_k8s_api_core_v1_resource_field_selector_t
+core_alias(v1_secret_key_selector_t);
+// io_k8s_api_core_v1_secret_key_selector_t
+core_alias(v1_weighted_pod_affinity_term_t);
+// io_k8s_api_core_v1_weighted_pod_affinity_term_t
+core_alias(v1_pod_affinity_term_t);
+// io_k8s_api_core_v1_pod_affinity_term_t
+core_alias(v1_node_selector_requirement_t);
+// io_k8s_api_core_v1_node_selector_requirement_t
+core_alias(v1_namespace_status_t);
+// io_k8s_api_core_v1_namespace_status_t
+core_alias(v1_node_address_t);
+// io_k8s_api_core_v1_node_address_t
+core_alias(v1_endpoint_port_t);
+// io_k8s_api_core_v1_endpoint_port_t
+core_alias(v1_pod_ip_t);
+// io_k8s_api_core_v1_pod_ip_t
+core_alias(v1_event_series_t);
+// io_k8s_api_core_v1_event_series_t
+core_alias(v1_env_from_source_t);
+// io_k8s_api_core_v1_env_from_source_t
+core_alias(v1_config_map_env_source_t);
+// io_k8s_api_core_v1_config_map_env_source_t
+core_alias(v1_session_affinity_config_t);
+// io_k8s_api_core_v1_session_affinity_config_t
+core_alias(v1_client_ip_config_t);
+// io_k8s_api_core_v1_client_ip_config_t
+core_alias(v1_typed_local_object_reference_t);
+// io_k8s_api_core_v1_typed_local_object_reference_t
+core_alias(v1_endpoint_subset_t);
+// io_k8s_api_core_v1_endpoint_subset_t
+core_alias(v1_pod_anti_affinity_t);
+// io_k8s_api_core_v1_pod_anti_affinity_t
+core_alias(v1_persistent_volume_spec_t);
+// io_k8s_api_core_v1_persistent_volume_spec_t
+core_alias(v1_persistent_volume_status_t);
+// io_k8s_api_core_v1_persistent_volume_status_t
+core_alias(v1_topology_selector_term_t);
+// io_k8s_api_core_v1_topology_selector_term_t
+core_alias(v1_event_source_t);
+// io_k8s_api_core_v1_event_source_t
+core_alias(v1_config_map_projection_t);
+// io_k8s_api_core_v1_config_map_projection_t
+core_alias(v1_host_alias_t);
+// io_k8s_api_core_v1_host_alias_t
+core_alias(v1_service_account_token_projection_t);
+// io_k8s_api_core_v1_service_account_token_projection_t
+core_alias(v1_container_status_t);
+// io_k8s_api_core_v1_container_status_t
+core_alias(v1_container_state_t);
+// io_k8s_api_core_v1_container_state_t
+core_alias(v1_load_balancer_status_t);
+// io_k8s_api_core_v1_load_balancer_status_t
+core_alias(v1_preferred_scheduling_term_t);
+// io_k8s_api_core_v1_preferred_scheduling_term_t
+core_alias(v1_node_selector_term_t);
+// io_k8s_api_core_v1_node_selector_term_t
+core_alias(v1_security_context_t);
+// io_k8s_api_core_v1_security_context_t
+core_alias(v1_capabilities_t);
+// io_k8s_api_core_v1_capabilities_t
+core_alias(v1_limit_range_item_t);
+// io_k8s_api_core_v1_limit_range_item_t
+core_alias(v1_lifecycle_t);
+// io_k8s_api_core_v1_lifecycle_t
+core_alias(v1_handler_t);
+// io_k8s_api_core_v1_handler_t
+core_alias(v1_port_status_t);
+// io_k8s_api_core_v1_port_status_t
+core_alias(v1_volume_node_affinity_t);
+// io_k8s_api_core_v1_volume_node_affinity_t
+core_alias(v1_node_selector_t);
+// io_k8s_api_core_v1_node_selector_t
+core_alias(v1_pod_spec_t);
+// io_k8s_api_core_v1_pod_spec_t
+core_alias(v1_persistent_volume_claim_template_t);
+// io_k8s_api_core_v1_persistent_volume_claim_template_t
+core_alias(v1_limit_range_spec_t);
+// io_k8s_api_core_v1_limit_range_spec_t
+core_alias(v1_http_header_t);
+// io_k8s_api_core_v1_http_header_t
+core_alias(v1_container_t);
+// io_k8s_api_core_v1_container_t
+core_alias(v1_resource_requirements_t);
+// io_k8s_api_core_v1_resource_requirements_t
+core_alias(v1_pod_status_t);
+// io_k8s_api_core_v1_pod_status_t
+core_alias(v1_config_map_node_config_source_t);
+// io_k8s_api_core_v1_config_map_node_config_source_t
+core_alias(v1_replication_controller_spec_t);
+// io_k8s_api_core_v1_replication_controller_spec_t
+core_alias(v1_replication_controller_status_t);
+// io_k8s_api_core_v1_replication_controller_status_t
+core_alias(v1_key_to_path_t);
+// io_k8s_api_core_v1_key_to_path_t
+core_alias(v1_ceph_fs_persistent_volume_source_t);
+// io_k8s_api_core_v1_ceph_fs_persistent_volume_source_t
+core_alias(v1_sysctl_t);
+// io_k8s_api_core_v1_sysctl_t
+core_alias(v1_node_spec_t);
+// io_k8s_api_core_v1_node_spec_t
+core_alias(v1_node_status_t);
+// io_k8s_api_core_v1_node_status_t
+core_alias(v1_container_state_running_t);
+// io_k8s_api_core_v1_container_state_running_t
+core_alias(v1_container_state_terminated_t);
+// io_k8s_api_core_v1_container_state_terminated_t
+core_alias(v1_container_state_waiting_t);
+// io_k8s_api_core_v1_container_state_waiting_t
+core_alias(v1_iscsi_persistent_volume_source_t);
+// io_k8s_api_core_v1_iscsi_persistent_volume_source_t
+core_alias(v1_affinity_t);
+// io_k8s_api_core_v1_affinity_t
+core_alias(v1_node_affinity_t);
+// io_k8s_api_core_v1_node_affinity_t
+core_alias(v1_pod_affinity_t);
+// io_k8s_api_core_v1_pod_affinity_t
+core_alias(v1_azure_file_persistent_volume_source_t);
+// io_k8s_api_core_v1_azure_file_persistent_volume_source_t
+core_alias(v1_local_volume_source_t);
+// io_k8s_api_core_v1_local_volume_source_t
+core_alias(v1_cinder_persistent_volume_source_t);
+// io_k8s_api_core_v1_cinder_persistent_volume_source_t
+core_alias(v1_component_condition_t);
+// io_k8s_api_core_v1_component_condition_t
+core_alias(v1_pod_readiness_gate_t);
+// io_k8s_api_core_v1_pod_readiness_gate_t
+core_alias(v1_secret_projection_t);
+// io_k8s_api_core_v1_secret_projection_t
+core_alias(v1_persistent_volume_claim_condition_t);
+// io_k8s_api_core_v1_persistent_volume_claim_condition_t
+core_alias(v1_toleration_t);
+// io_k8s_api_core_v1_toleration_t
+core_alias(v1_resource_quota_status_t);
+// io_k8s_api_core_v1_resource_quota_status_t
+core_alias(v1_topology_spread_constraint_t);
+// io_k8s_api_core_v1_topology_spread_constraint_t
+core_alias(v1_node_system_info_t);
+// io_k8s_api_core_v1_node_system_info_t
+core_alias(v1_taint_t);
+// io_k8s_api_core_v1_taint_t
+core_alias(v1_node_condition_t);
+// io_k8s_api_core_v1_node_condition_t
+core_alias(v1_volume_mount_t);
+// io_k8s_api_core_v1_volume_mount_t
+core_alias(v1_container_port_t);
+// io_k8s_api_core_v1_container_port_t
+core_alias(v1_topology_selector_label_requirement_t);
+// io_k8s_api_core_v1_topology_selector_label_requirement_t
+core_alias(v1_container_image_t);
+// io_k8s_api_core_v1_container_image_t
+core_alias(v1_rbd_persistent_volume_source_t);
+// io_k8s_api_core_v1_rbd_persistent_volume_source_t
+core_alias(v1_endpoint_address_t);
+// io_k8s_api_core_v1_endpoint_address_t
+core_alias(v1_attached_volume_t);
+// io_k8s_api_core_v1_attached_volume_t
+core_alias(v1_pod_condition_t);
+// io_k8s_api_core_v1_pod_condition_t
+core_alias(v1_load_balancer_ingress_t);
+// io_k8s_api_core_v1_load_balancer_ingress_t
+core_alias(v1_glusterfs_persistent_volume_source_t);
+// io_k8s_api_core_v1_glusterfs_persistent_volume_source_t
+core_alias(v1_scoped_resource_selector_requirement_t);
+// io_k8s_api_core_v1_scoped_resource_selector_requirement_t
+core_alias(v1_node_daemon_endpoints_t);
+// io_k8s_api_core_v1_node_daemon_endpoints_t
+core_alias(v1_volume_projection_t);
+// io_k8s_api_core_v1_volume_projection_t
+core_alias(v1_namespace_condition_t);
+// io_k8s_api_core_v1_namespace_condition_t
+core_alias(v1_replication_controller_condition_t);
+// io_k8s_api_core_v1_replication_controller_condition_t
+core_alias(v1_daemon_endpoint_t);
+// io_k8s_api_core_v1_daemon_endpoint_t
+core_alias(v1_storage_os_persistent_volume_source_t);
+// io_k8s_api_core_v1_storage_os_persistent_volume_source_t
+core_alias(v1_scale_io_persistent_volume_source_t);
+// io_k8s_api_core_v1_scale_io_persistent_volume_source_t
+core_alias(v1_downward_api_volume_file_t);
+// io_k8s_api_core_v1_downward_api_volume_file_t
+core_alias(v1_ephemeral_container_t);
+// io_k8s_api_core_v1_ephemeral_container_t
+core_alias(v1_service_port_t);
+// io_k8s_api_core_v1_service_port_t
 
-meta_alias(v1_status_t);
-meta_alias(v1_api_resource_list_t);
-meta_alias(v1_watch_event_t);
+
+// apimachinery
+apimachinery_alias(v1_api_resource_list_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_api_resource_list_t
+apimachinery_alias(v1_status_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_status_t
+apimachinery_alias(v1_watch_event_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_watch_event_t
+apimachinery_alias(v1_api_group_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_api_group_t
+apimachinery_alias(v1_api_group_list_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_api_group_list_t
+apimachinery_alias(v1_api_versions_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_api_versions_t
+apimachinery_alias(v1_object_meta_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_object_meta_t
+apimachinery_alias(v1_api_resource_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_api_resource_t
+apimachinery_alias(v1_list_meta_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_list_meta_t
+apimachinery_alias(v1_label_selector_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_label_selector_t
+apimachinery_alias(v1_status_cause_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_status_cause_t
+apimachinery_alias(v1_group_version_for_discovery_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_group_version_for_discovery_t
+apimachinery_alias(v1_condition_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_condition_t
+apimachinery_alias(v1_label_selector_requirement_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_label_selector_requirement_t
+apimachinery_alias(v1_status_details_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_status_details_t
+apimachinery_alias(v1_managed_fields_entry_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_managed_fields_entry_t
+apimachinery_alias(v1_server_address_by_client_cidr_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_server_address_by_client_cidr_t
+apimachinery_alias(v1_preconditions_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_preconditions_t
+apimachinery_alias(v1_delete_options_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_delete_options_t
+apimachinery_alias(v1_owner_reference_t);
+// io_k8s_apimachinery_pkg_apis_meta_v1_owner_reference_t
+
+
+// authorization
+authorization_alias(v1_local_subject_access_review_t);
+// io_k8s_api_authorization_v1_local_subject_access_review_t
+authorization_alias(v1_self_subject_access_review_t);
+// io_k8s_api_authorization_v1_self_subject_access_review_t
+authorization_alias(v1_self_subject_rules_review_t);
+// io_k8s_api_authorization_v1_self_subject_rules_review_t
+authorization_alias(v1_subject_access_review_t);
+// io_k8s_api_authorization_v1_subject_access_review_t
+authorization_alias(v1beta1_local_subject_access_review_t);
+// io_k8s_api_authorization_v1beta1_local_subject_access_review_t
+authorization_alias(v1beta1_self_subject_access_review_t);
+// io_k8s_api_authorization_v1beta1_self_subject_access_review_t
+authorization_alias(v1beta1_self_subject_rules_review_t);
+// io_k8s_api_authorization_v1beta1_self_subject_rules_review_t
+authorization_alias(v1beta1_subject_access_review_t);
+// io_k8s_api_authorization_v1beta1_subject_access_review_t
+authorization_alias(v1beta1_self_subject_rules_review_spec_t);
+// io_k8s_api_authorization_v1beta1_self_subject_rules_review_spec_t
+authorization_alias(v1beta1_subject_rules_review_status_t);
+// io_k8s_api_authorization_v1beta1_subject_rules_review_status_t
+authorization_alias(v1beta1_non_resource_attributes_t);
+// io_k8s_api_authorization_v1beta1_non_resource_attributes_t
+authorization_alias(v1_resource_attributes_t);
+// io_k8s_api_authorization_v1_resource_attributes_t
+authorization_alias(v1beta1_self_subject_access_review_spec_t);
+// io_k8s_api_authorization_v1beta1_self_subject_access_review_spec_t
+authorization_alias(v1beta1_subject_access_review_status_t);
+// io_k8s_api_authorization_v1beta1_subject_access_review_status_t
+authorization_alias(v1_non_resource_attributes_t);
+// io_k8s_api_authorization_v1_non_resource_attributes_t
+authorization_alias(v1_self_subject_access_review_spec_t);
+// io_k8s_api_authorization_v1_self_subject_access_review_spec_t
+authorization_alias(v1beta1_subject_access_review_spec_t);
+// io_k8s_api_authorization_v1beta1_subject_access_review_spec_t
+authorization_alias(v1beta1_non_resource_rule_t);
+// io_k8s_api_authorization_v1beta1_non_resource_rule_t
+authorization_alias(v1_non_resource_rule_t);
+// io_k8s_api_authorization_v1_non_resource_rule_t
+authorization_alias(v1_subject_access_review_status_t);
+// io_k8s_api_authorization_v1_subject_access_review_status_t
+authorization_alias(v1beta1_resource_attributes_t);
+// io_k8s_api_authorization_v1beta1_resource_attributes_t
+authorization_alias(v1_subject_access_review_spec_t);
+// io_k8s_api_authorization_v1_subject_access_review_spec_t
+authorization_alias(v1beta1_resource_rule_t);
+// io_k8s_api_authorization_v1beta1_resource_rule_t
+authorization_alias(v1_self_subject_rules_review_spec_t);
+// io_k8s_api_authorization_v1_self_subject_rules_review_spec_t
+authorization_alias(v1_subject_rules_review_status_t);
+// io_k8s_api_authorization_v1_subject_rules_review_status_t
+authorization_alias(v1_resource_rule_t);
+// io_k8s_api_authorization_v1_resource_rule_t
+
+
+// events
+events_alias(v1beta1_event_t);
+// io_k8s_api_events_v1beta1_event_t
+events_alias(v1beta1_event_list_t);
+// io_k8s_api_events_v1beta1_event_list_t
+events_alias(v1beta1_event_series_t);
+// io_k8s_api_events_v1beta1_event_series_t
+
+events_alias_by_conflict(v1_event_t);
+// io_k8s_api_events_v1_event_t
+events_alias_by_conflict(v1_event_series_t);
+// io_k8s_api_events_v1_event_series_t
+events_alias_by_conflict(v1_event_list_t);
+// io_k8s_api_events_v1_event_list_t
+
+// node
+node_alias(v1beta1_runtime_class_t);
+// io_k8s_api_node_v1beta1_runtime_class_t
+node_alias(v1beta1_runtime_class_list_t);
+// io_k8s_api_node_v1beta1_runtime_class_list_t
+node_alias(v1alpha1_runtime_class_t);
+// io_k8s_api_node_v1alpha1_runtime_class_t
+node_alias(v1alpha1_runtime_class_list_t);
+// io_k8s_api_node_v1alpha1_runtime_class_list_t
+node_alias(v1_runtime_class_t);
+// io_k8s_api_node_v1_runtime_class_t
+node_alias(v1_runtime_class_list_t);
+// io_k8s_api_node_v1_runtime_class_list_t
+node_alias(v1beta1_scheduling_t);
+// io_k8s_api_node_v1beta1_scheduling_t
+node_alias(v1alpha1_scheduling_t);
+// io_k8s_api_node_v1alpha1_scheduling_t
+node_alias(v1_scheduling_t);
+// io_k8s_api_node_v1_scheduling_t
+node_alias(v1_overhead_t);
+// io_k8s_api_node_v1_overhead_t
+node_alias(v1beta1_overhead_t);
+// io_k8s_api_node_v1beta1_overhead_t
+node_alias(v1alpha1_runtime_class_spec_t);
+// io_k8s_api_node_v1alpha1_runtime_class_spec_t
+node_alias(v1alpha1_overhead_t);
+// io_k8s_api_node_v1alpha1_overhead_t
+
+
+// scheduling
+scheduling_alias(v1_priority_class_t);
+// io_k8s_api_scheduling_v1_priority_class_t
+scheduling_alias(v1_priority_class_list_t);
+// io_k8s_api_scheduling_v1_priority_class_list_t
+scheduling_alias(v1alpha1_priority_class_t);
+// io_k8s_api_scheduling_v1alpha1_priority_class_t
+scheduling_alias(v1alpha1_priority_class_list_t);
+// io_k8s_api_scheduling_v1alpha1_priority_class_list_t
+scheduling_alias(v1beta1_priority_class_t);
+// io_k8s_api_scheduling_v1beta1_priority_class_t
+scheduling_alias(v1beta1_priority_class_list_t);
+// io_k8s_api_scheduling_v1beta1_priority_class_list_t
+
+
+// certificates
+certificates_alias(v1beta1_certificate_signing_request_t);
+// io_k8s_api_certificates_v1beta1_certificate_signing_request_t
+certificates_alias(v1beta1_certificate_signing_request_list_t);
+// io_k8s_api_certificates_v1beta1_certificate_signing_request_list_t
+certificates_alias(v1_certificate_signing_request_t);
+// io_k8s_api_certificates_v1_certificate_signing_request_t
+certificates_alias(v1_certificate_signing_request_list_t);
+// io_k8s_api_certificates_v1_certificate_signing_request_list_t
+certificates_alias(v1_certificate_signing_request_spec_t);
+// io_k8s_api_certificates_v1_certificate_signing_request_spec_t
+certificates_alias(v1_certificate_signing_request_status_t);
+// io_k8s_api_certificates_v1_certificate_signing_request_status_t
+certificates_alias(v1beta1_certificate_signing_request_spec_t);
+// io_k8s_api_certificates_v1beta1_certificate_signing_request_spec_t
+certificates_alias(v1beta1_certificate_signing_request_status_t);
+// io_k8s_api_certificates_v1beta1_certificate_signing_request_status_t
+certificates_alias(v1_certificate_signing_request_condition_t);
+// io_k8s_api_certificates_v1_certificate_signing_request_condition_t
+certificates_alias(v1beta1_certificate_signing_request_condition_t);
+// io_k8s_api_certificates_v1beta1_certificate_signing_request_condition_t
+
+
+// apiserverinternal
+apiserverinternal_alias(v1alpha1_storage_version_t);
+// io_k8s_api_apiserverinternal_v1alpha1_storage_version_t
+apiserverinternal_alias(v1alpha1_storage_version_list_t);
+// io_k8s_api_apiserverinternal_v1alpha1_storage_version_list_t
+apiserverinternal_alias(v1alpha1_storage_version_status_t);
+// io_k8s_api_apiserverinternal_v1alpha1_storage_version_status_t
+apiserverinternal_alias(v1alpha1_storage_version_condition_t);
+// io_k8s_api_apiserverinternal_v1alpha1_storage_version_condition_t
+apiserverinternal_alias(v1alpha1_server_storage_version_t);
+// io_k8s_api_apiserverinternal_v1alpha1_server_storage_version_t
+
+
+// apps
+apps_alias(v1_controller_revision_t);
+// io_k8s_api_apps_v1_controller_revision_t
+apps_alias(v1_daemon_set_t);
+// io_k8s_api_apps_v1_daemon_set_t
+apps_alias(v1_deployment_t);
+// io_k8s_api_apps_v1_deployment_t
+apps_alias(v1_replica_set_t);
+// io_k8s_api_apps_v1_replica_set_t
+apps_alias(v1_stateful_set_t);
+// io_k8s_api_apps_v1_stateful_set_t
+apps_alias(v1_controller_revision_list_t);
+// io_k8s_api_apps_v1_controller_revision_list_t
+apps_alias(v1_daemon_set_list_t);
+// io_k8s_api_apps_v1_daemon_set_list_t
+apps_alias(v1_deployment_list_t);
+// io_k8s_api_apps_v1_deployment_list_t
+apps_alias(v1_replica_set_list_t);
+// io_k8s_api_apps_v1_replica_set_list_t
+apps_alias(v1_stateful_set_list_t);
+// io_k8s_api_apps_v1_stateful_set_list_t
+apps_alias(v1_stateful_set_update_strategy_t);
+// io_k8s_api_apps_v1_stateful_set_update_strategy_t
+apps_alias(v1_rolling_update_stateful_set_strategy_t);
+// io_k8s_api_apps_v1_rolling_update_stateful_set_strategy_t
+apps_alias(v1_rolling_update_daemon_set_t);
+// io_k8s_api_apps_v1_rolling_update_daemon_set_t
+apps_alias(v1_deployment_spec_t);
+// io_k8s_api_apps_v1_deployment_spec_t
+apps_alias(v1_deployment_strategy_t);
+// io_k8s_api_apps_v1_deployment_strategy_t
+apps_alias(v1_deployment_status_t);
+// io_k8s_api_apps_v1_deployment_status_t
+apps_alias(v1_deployment_condition_t);
+// io_k8s_api_apps_v1_deployment_condition_t
+apps_alias(v1_daemon_set_spec_t);
+// io_k8s_api_apps_v1_daemon_set_spec_t
+apps_alias(v1_daemon_set_status_t);
+// io_k8s_api_apps_v1_daemon_set_status_t
+apps_alias(v1_replica_set_spec_t);
+// io_k8s_api_apps_v1_replica_set_spec_t
+apps_alias(v1_daemon_set_update_strategy_t);
+// io_k8s_api_apps_v1_daemon_set_update_strategy_t
+apps_alias(v1_replica_set_condition_t);
+// io_k8s_api_apps_v1_replica_set_condition_t
+apps_alias(v1_replica_set_status_t);
+// io_k8s_api_apps_v1_replica_set_status_t
+apps_alias(v1_stateful_set_condition_t);
+// io_k8s_api_apps_v1_stateful_set_condition_t
+apps_alias(v1_rolling_update_deployment_t);
+// io_k8s_api_apps_v1_rolling_update_deployment_t
+apps_alias(v1_stateful_set_spec_t);
+// io_k8s_api_apps_v1_stateful_set_spec_t
+apps_alias(v1_stateful_set_status_t);
+// io_k8s_api_apps_v1_stateful_set_status_t
+apps_alias(v1_daemon_set_condition_t);
+// io_k8s_api_apps_v1_daemon_set_condition_t
+
+
+// authentication
+authentication_alias(v1_token_review_t);
+// io_k8s_api_authentication_v1_token_review_t
+authentication_alias(v1_token_request_t);
+// io_k8s_api_authentication_v1_token_request_t
+authentication_alias(v1beta1_token_review_t);
+// io_k8s_api_authentication_v1beta1_token_review_t
+authentication_alias(v1_token_review_spec_t);
+// io_k8s_api_authentication_v1_token_review_spec_t
+authentication_alias(v1_token_review_status_t);
+// io_k8s_api_authentication_v1_token_review_status_t
+authentication_alias(v1_token_request_spec_t);
+// io_k8s_api_authentication_v1_token_request_spec_t
+authentication_alias(v1_bound_object_reference_t);
+// io_k8s_api_authentication_v1_bound_object_reference_t
+authentication_alias(v1_user_info_t);
+// io_k8s_api_authentication_v1_user_info_t
+authentication_alias(v1beta1_token_review_status_t);
+// io_k8s_api_authentication_v1beta1_token_review_status_t
+authentication_alias(v1beta1_user_info_t);
+// io_k8s_api_authentication_v1beta1_user_info_t
+authentication_alias(v1_token_request_status_t);
+// io_k8s_api_authentication_v1_token_request_status_t
+authentication_alias(v1beta1_token_review_spec_t);
+// io_k8s_api_authentication_v1beta1_token_review_spec_t
+
+
+// autoscaling
+autoscaling_alias(v1_horizontal_pod_autoscaler_t);
+// io_k8s_api_autoscaling_v1_horizontal_pod_autoscaler_t
+autoscaling_alias(v1_horizontal_pod_autoscaler_list_t);
+// io_k8s_api_autoscaling_v1_horizontal_pod_autoscaler_list_t
+autoscaling_alias(v2beta2_horizontal_pod_autoscaler_t);
+// io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_t
+autoscaling_alias(v2beta2_horizontal_pod_autoscaler_list_t);
+// io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_list_t
+autoscaling_alias(v1_scale_t);
+// io_k8s_api_autoscaling_v1_scale_t
+autoscaling_alias(v2beta1_horizontal_pod_autoscaler_t);
+// io_k8s_api_autoscaling_v2beta1_horizontal_pod_autoscaler_t
+autoscaling_alias(v2beta1_horizontal_pod_autoscaler_list_t);
+// io_k8s_api_autoscaling_v2beta1_horizontal_pod_autoscaler_list_t
+autoscaling_alias(v2beta1_metric_spec_t);
+// io_k8s_api_autoscaling_v2beta1_metric_spec_t
+autoscaling_alias(v2beta1_container_resource_metric_source_t);
+// io_k8s_api_autoscaling_v2beta1_container_resource_metric_source_t
+autoscaling_alias(v2beta1_external_metric_source_t);
+// io_k8s_api_autoscaling_v2beta1_external_metric_source_t
+autoscaling_alias(v2beta1_object_metric_source_t);
+// io_k8s_api_autoscaling_v2beta1_object_metric_source_t
+autoscaling_alias(v2beta1_pods_metric_source_t);
+// io_k8s_api_autoscaling_v2beta1_pods_metric_source_t
+autoscaling_alias(v2beta1_resource_metric_source_t);
+// io_k8s_api_autoscaling_v2beta1_resource_metric_source_t
+autoscaling_alias(v1_horizontal_pod_autoscaler_status_t);
+// io_k8s_api_autoscaling_v1_horizontal_pod_autoscaler_status_t
+autoscaling_alias(v2beta1_resource_metric_status_t);
+// io_k8s_api_autoscaling_v2beta1_resource_metric_status_t
+autoscaling_alias(v2beta2_horizontal_pod_autoscaler_condition_t);
+// io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_condition_t
+autoscaling_alias(v2beta1_horizontal_pod_autoscaler_condition_t);
+// io_k8s_api_autoscaling_v2beta1_horizontal_pod_autoscaler_condition_t
+autoscaling_alias(v2beta1_horizontal_pod_autoscaler_status_t);
+// io_k8s_api_autoscaling_v2beta1_horizontal_pod_autoscaler_status_t
+autoscaling_alias(v2beta2_metric_identifier_t);
+// io_k8s_api_autoscaling_v2beta2_metric_identifier_t
+autoscaling_alias(v2beta2_object_metric_source_t);
+// io_k8s_api_autoscaling_v2beta2_object_metric_source_t
+autoscaling_alias(v2beta2_cross_version_object_reference_t);
+// io_k8s_api_autoscaling_v2beta2_cross_version_object_reference_t
+autoscaling_alias(v2beta2_metric_target_t);
+// io_k8s_api_autoscaling_v2beta2_metric_target_t
+autoscaling_alias(v2beta2_horizontal_pod_autoscaler_spec_t);
+// io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_spec_t
+autoscaling_alias(v2beta2_horizontal_pod_autoscaler_behavior_t);
+// io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_behavior_t
+autoscaling_alias(v2beta1_external_metric_status_t);
+// io_k8s_api_autoscaling_v2beta1_external_metric_status_t
+autoscaling_alias(v2beta1_cross_version_object_reference_t);
+// io_k8s_api_autoscaling_v2beta1_cross_version_object_reference_t
+autoscaling_alias(v1_scale_spec_t);
+// io_k8s_api_autoscaling_v1_scale_spec_t
+autoscaling_alias(v1_scale_status_t);
+// io_k8s_api_autoscaling_v1_scale_status_t
+autoscaling_alias(v2beta2_metric_spec_t);
+// io_k8s_api_autoscaling_v2beta2_metric_spec_t
+autoscaling_alias(v2beta2_container_resource_metric_source_t);
+// io_k8s_api_autoscaling_v2beta2_container_resource_metric_source_t
+autoscaling_alias(v2beta2_external_metric_source_t);
+// io_k8s_api_autoscaling_v2beta2_external_metric_source_t
+autoscaling_alias(v2beta2_pods_metric_source_t);
+// io_k8s_api_autoscaling_v2beta2_pods_metric_source_t
+autoscaling_alias(v2beta2_resource_metric_source_t);
+// io_k8s_api_autoscaling_v2beta2_resource_metric_source_t
+autoscaling_alias(v2beta2_pods_metric_status_t);
+// io_k8s_api_autoscaling_v2beta2_pods_metric_status_t
+autoscaling_alias(v2beta2_metric_value_status_t);
+// io_k8s_api_autoscaling_v2beta2_metric_value_status_t
+autoscaling_alias(v2beta1_object_metric_status_t);
+// io_k8s_api_autoscaling_v2beta1_object_metric_status_t
+autoscaling_alias(v2beta1_container_resource_metric_status_t);
+// io_k8s_api_autoscaling_v2beta1_container_resource_metric_status_t
+autoscaling_alias(v2beta1_metric_status_t);
+// io_k8s_api_autoscaling_v2beta1_metric_status_t
+autoscaling_alias(v2beta1_pods_metric_status_t);
+// io_k8s_api_autoscaling_v2beta1_pods_metric_status_t
+autoscaling_alias(v2beta2_horizontal_pod_autoscaler_status_t);
+// io_k8s_api_autoscaling_v2beta2_horizontal_pod_autoscaler_status_t
+autoscaling_alias(v2beta2_object_metric_status_t);
+// io_k8s_api_autoscaling_v2beta2_object_metric_status_t
+autoscaling_alias(v1_horizontal_pod_autoscaler_spec_t);
+// io_k8s_api_autoscaling_v1_horizontal_pod_autoscaler_spec_t
+autoscaling_alias(v2beta1_horizontal_pod_autoscaler_spec_t);
+// io_k8s_api_autoscaling_v2beta1_horizontal_pod_autoscaler_spec_t
+autoscaling_alias(v2beta2_hpa_scaling_rules_t);
+// io_k8s_api_autoscaling_v2beta2_hpa_scaling_rules_t
+autoscaling_alias(v2beta2_external_metric_status_t);
+// io_k8s_api_autoscaling_v2beta2_external_metric_status_t
+autoscaling_alias(v1_cross_version_object_reference_t);
+// io_k8s_api_autoscaling_v1_cross_version_object_reference_t
+autoscaling_alias(v2beta2_container_resource_metric_status_t);
+// io_k8s_api_autoscaling_v2beta2_container_resource_metric_status_t
+autoscaling_alias(v2beta2_resource_metric_status_t);
+// io_k8s_api_autoscaling_v2beta2_resource_metric_status_t
+autoscaling_alias(v2beta2_metric_status_t);
+// io_k8s_api_autoscaling_v2beta2_metric_status_t
+autoscaling_alias(v2beta2_hpa_scaling_policy_t);
+// io_k8s_api_autoscaling_v2beta2_hpa_scaling_policy_t
+
+
+// batch
+batch_alias(v1_job_t);
+// io_k8s_api_batch_v1_job_t
+batch_alias(v1_job_list_t);
+// io_k8s_api_batch_v1_job_list_t
+batch_alias(v1beta1_cron_job_t);
+// io_k8s_api_batch_v1beta1_cron_job_t
+batch_alias(v1beta1_cron_job_list_t);
+// io_k8s_api_batch_v1beta1_cron_job_list_t
+batch_alias(v1_job_condition_t);
+// io_k8s_api_batch_v1_job_condition_t
+batch_alias(v1beta1_cron_job_status_t);
+// io_k8s_api_batch_v1beta1_cron_job_status_t
+batch_alias(v1_job_spec_t);
+// io_k8s_api_batch_v1_job_spec_t
+batch_alias(v1_job_status_t);
+// io_k8s_api_batch_v1_job_status_t
+batch_alias(v1beta1_cron_job_spec_t);
+// io_k8s_api_batch_v1beta1_cron_job_spec_t
+batch_alias(v1beta1_job_template_spec_t);
+// io_k8s_api_batch_v1beta1_job_template_spec_t
+
+
+// coordination
+coordination_alias(v1beta1_lease_t);
+// io_k8s_api_coordination_v1beta1_lease_t
+coordination_alias(v1beta1_lease_list_t);
+// io_k8s_api_coordination_v1beta1_lease_list_t
+coordination_alias(v1_lease_t);
+// io_k8s_api_coordination_v1_lease_t
+coordination_alias(v1_lease_list_t);
+// io_k8s_api_coordination_v1_lease_list_t
+coordination_alias(v1_lease_spec_t);
+// io_k8s_api_coordination_v1_lease_spec_t
+coordination_alias(v1beta1_lease_spec_t);
+// io_k8s_api_coordination_v1beta1_lease_spec_t
+
+
+// rbac
+rbac_alias(rbac_v1alpha1_cluster_role_t);
+// io_k8s_api_rbac_v1alpha1_cluster_role_t
+rbac_alias(rbac_v1alpha1_cluster_role_binding_t);
+// io_k8s_api_rbac_v1alpha1_cluster_role_binding_t
+rbac_alias(rbac_v1alpha1_role_t);
+// io_k8s_api_rbac_v1alpha1_role_t
+rbac_alias(rbac_v1alpha1_role_binding_t);
+// io_k8s_api_rbac_v1alpha1_role_binding_t
+rbac_alias(rbac_v1alpha1_cluster_role_list_t);
+// io_k8s_api_rbac_v1alpha1_cluster_role_list_t
+rbac_alias(rbac_v1alpha1_cluster_role_binding_list_t);
+// io_k8s_api_rbac_v1alpha1_cluster_role_binding_list_t
+rbac_alias(rbac_v1alpha1_role_list_t);
+// io_k8s_api_rbac_v1alpha1_role_list_t
+rbac_alias(rbac_v1alpha1_role_binding_list_t);
+// io_k8s_api_rbac_v1alpha1_role_binding_list_t
+rbac_alias(admissionregistration_v1beta1_mutating_webhook_configuration_t);
+// io_k8s_api_admissionregistration_v1beta1_mutating_webhook_configuration_t
+rbac_alias(admissionregistration_v1beta1_validating_webhook_configuration_t);
+// io_k8s_api_admissionregistration_v1beta1_validating_webhook_configuration_t
+rbac_alias(admissionregistration_v1beta1_mutating_webhook_configuration_list_t);
+// io_k8s_api_admissionregistration_v1beta1_mutating_webhook_configuration_list_t
+rbac_alias(admissionregistration_v1beta1_validating_webhook_configuration_list_t);
+// io_k8s_api_admissionregistration_v1beta1_validating_webhook_configuration_list_t
+rbac_alias(flowcontrol_v1beta1_flow_schema_t);
+// io_k8s_api_flowcontrol_v1beta1_flow_schema_t
+rbac_alias(flowcontrol_v1beta1_priority_level_configuration_t);
+// io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_t
+rbac_alias(flowcontrol_v1beta1_flow_schema_list_t);
+// io_k8s_api_flowcontrol_v1beta1_flow_schema_list_t
+rbac_alias(flowcontrol_v1beta1_priority_level_configuration_list_t);
+// io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_list_t
+rbac_alias(admissionregistration_v1_mutating_webhook_configuration_t);
+// io_k8s_api_admissionregistration_v1_mutating_webhook_configuration_t
+rbac_alias(admissionregistration_v1_validating_webhook_configuration_t);
+// io_k8s_api_admissionregistration_v1_validating_webhook_configuration_t
+rbac_alias(admissionregistration_v1_mutating_webhook_configuration_list_t);
+// io_k8s_api_admissionregistration_v1_mutating_webhook_configuration_list_t
+rbac_alias(admissionregistration_v1_validating_webhook_configuration_list_t);
+// io_k8s_api_admissionregistration_v1_validating_webhook_configuration_list_t
+rbac_alias(extensions_v1beta1_ingress_t);
+// io_k8s_api_extensions_v1beta1_ingress_t
+rbac_alias(extensions_v1beta1_ingress_list_t);
+// io_k8s_api_extensions_v1beta1_ingress_list_t
+rbac_alias(policy_v1beta1_pod_disruption_budget_t);
+// io_k8s_api_policy_v1beta1_pod_disruption_budget_t
+rbac_alias(policy_v1beta1_pod_security_policy_t);
+// io_k8s_api_policy_v1beta1_pod_security_policy_t
+rbac_alias(policy_v1beta1_pod_disruption_budget_list_t);
+// io_k8s_api_policy_v1beta1_pod_disruption_budget_list_t
+rbac_alias(policy_v1beta1_pod_security_policy_list_t);
+// io_k8s_api_policy_v1beta1_pod_security_policy_list_t
+rbac_alias(policy_v1beta1_eviction_t);
+// io_k8s_api_policy_v1beta1_eviction_t
+rbac_alias(discovery_v1beta1_endpoint_slice_t);
+// io_k8s_api_discovery_v1beta1_endpoint_slice_t
+rbac_alias(discovery_v1beta1_endpoint_slice_list_t);
+// io_k8s_api_discovery_v1beta1_endpoint_slice_list_t
+rbac_alias(storage_v1beta1_csi_driver_t);
+// io_k8s_api_storage_v1beta1_csi_driver_t
+rbac_alias(storage_v1beta1_csi_node_t);
+// io_k8s_api_storage_v1beta1_csi_node_t
+rbac_alias(storage_v1beta1_storage_class_t);
+// io_k8s_api_storage_v1beta1_storage_class_t
+rbac_alias(storage_v1beta1_volume_attachment_t);
+// io_k8s_api_storage_v1beta1_volume_attachment_t
+rbac_alias(storage_v1beta1_csi_driver_list_t);
+// io_k8s_api_storage_v1beta1_csi_driver_list_t
+rbac_alias(storage_v1beta1_csi_node_list_t);
+// io_k8s_api_storage_v1beta1_csi_node_list_t
+rbac_alias(storage_v1beta1_storage_class_list_t);
+// io_k8s_api_storage_v1beta1_storage_class_list_t
+rbac_alias(storage_v1beta1_volume_attachment_list_t);
+// io_k8s_api_storage_v1beta1_volume_attachment_list_t
+rbac_alias(storage_v1alpha1_csi_storage_capacity_t);
+// io_k8s_api_storage_v1alpha1_csi_storage_capacity_t
+rbac_alias(storage_v1alpha1_volume_attachment_t);
+// io_k8s_api_storage_v1alpha1_volume_attachment_t
+rbac_alias(storage_v1alpha1_csi_storage_capacity_list_t);
+// io_k8s_api_storage_v1alpha1_csi_storage_capacity_list_t
+rbac_alias(storage_v1alpha1_volume_attachment_list_t);
+// io_k8s_api_storage_v1alpha1_volume_attachment_list_t
+rbac_alias(storage_v1_csi_driver_t);
+// io_k8s_api_storage_v1_csi_driver_t
+rbac_alias(storage_v1_csi_node_t);
+// io_k8s_api_storage_v1_csi_node_t
+rbac_alias(storage_v1_storage_class_t);
+// io_k8s_api_storage_v1_storage_class_t
+rbac_alias(storage_v1_volume_attachment_t);
+// io_k8s_api_storage_v1_volume_attachment_t
+rbac_alias(storage_v1_csi_driver_list_t);
+// io_k8s_api_storage_v1_csi_driver_list_t
+rbac_alias(storage_v1_csi_node_list_t);
+// io_k8s_api_storage_v1_csi_node_list_t
+rbac_alias(storage_v1_storage_class_list_t);
+// io_k8s_api_storage_v1_storage_class_list_t
+rbac_alias(storage_v1_volume_attachment_list_t);
+// io_k8s_api_storage_v1_volume_attachment_list_t
+rbac_alias(networking_v1beta1_ingress_class_t);
+// io_k8s_api_networking_v1beta1_ingress_class_t
+rbac_alias(networking_v1beta1_ingress_t);
+// io_k8s_api_networking_v1beta1_ingress_t
+rbac_alias(networking_v1beta1_ingress_class_list_t);
+// io_k8s_api_networking_v1beta1_ingress_class_list_t
+rbac_alias(networking_v1beta1_ingress_list_t);
+// io_k8s_api_networking_v1beta1_ingress_list_t
+rbac_alias(rbac_v1_cluster_role_t);
+// io_k8s_api_rbac_v1_cluster_role_t
+rbac_alias(rbac_v1_cluster_role_binding_t);
+// io_k8s_api_rbac_v1_cluster_role_binding_t
+rbac_alias(rbac_v1_role_t);
+// io_k8s_api_rbac_v1_role_t
+rbac_alias(rbac_v1_role_binding_t);
+// io_k8s_api_rbac_v1_role_binding_t
+rbac_alias(rbac_v1_cluster_role_list_t);
+// io_k8s_api_rbac_v1_cluster_role_list_t
+rbac_alias(rbac_v1_cluster_role_binding_list_t);
+// io_k8s_api_rbac_v1_cluster_role_binding_list_t
+rbac_alias(rbac_v1_role_list_t);
+// io_k8s_api_rbac_v1_role_list_t
+rbac_alias(rbac_v1_role_binding_list_t);
+// io_k8s_api_rbac_v1_role_binding_list_t
+rbac_alias(networking_v1_ingress_class_t);
+// io_k8s_api_networking_v1_ingress_class_t
+rbac_alias(networking_v1_ingress_t);
+// io_k8s_api_networking_v1_ingress_t
+rbac_alias(networking_v1_network_policy_t);
+// io_k8s_api_networking_v1_network_policy_t
+rbac_alias(networking_v1_ingress_class_list_t);
+// io_k8s_api_networking_v1_ingress_class_list_t
+rbac_alias(networking_v1_ingress_list_t);
+// io_k8s_api_networking_v1_ingress_list_t
+rbac_alias(networking_v1_network_policy_list_t);
+// io_k8s_api_networking_v1_network_policy_list_t
+rbac_alias(rbac_v1beta1_cluster_role_t);
+// io_k8s_api_rbac_v1beta1_cluster_role_t
+rbac_alias(rbac_v1beta1_cluster_role_binding_t);
+// io_k8s_api_rbac_v1beta1_cluster_role_binding_t
+rbac_alias(rbac_v1beta1_role_t);
+// io_k8s_api_rbac_v1beta1_role_t
+rbac_alias(rbac_v1beta1_role_binding_t);
+// io_k8s_api_rbac_v1beta1_role_binding_t
+rbac_alias(rbac_v1beta1_cluster_role_list_t);
+// io_k8s_api_rbac_v1beta1_cluster_role_list_t
+rbac_alias(rbac_v1beta1_cluster_role_binding_list_t);
+// io_k8s_api_rbac_v1beta1_cluster_role_binding_list_t
+rbac_alias(rbac_v1beta1_role_list_t);
+// io_k8s_api_rbac_v1beta1_role_list_t
+rbac_alias(rbac_v1beta1_role_binding_list_t);
+// io_k8s_api_rbac_v1beta1_role_binding_list_t
+rbac_alias(networking_v1_ingress_class_spec_t);
+// io_k8s_api_networking_v1_ingress_class_spec_t
+rbac_alias(flowcontrol_v1beta1_limit_response_t);
+// io_k8s_api_flowcontrol_v1beta1_limit_response_t
+rbac_alias(flowcontrol_v1beta1_queuing_configuration_t);
+// io_k8s_api_flowcontrol_v1beta1_queuing_configuration_t
+rbac_alias(policy_v1beta1_host_port_range_t);
+// io_k8s_api_policy_v1beta1_host_port_range_t
+rbac_alias(rbac_v1beta1_aggregation_rule_t);
+// io_k8s_api_rbac_v1beta1_aggregation_rule_t
+rbac_alias(discovery_v1beta1_endpoint_t);
+// io_k8s_api_discovery_v1beta1_endpoint_t
+rbac_alias(discovery_v1beta1_endpoint_conditions_t);
+// io_k8s_api_discovery_v1beta1_endpoint_conditions_t
+rbac_alias(policy_v1beta1_se_linux_strategy_options_t);
+// io_k8s_api_policy_v1beta1_se_linux_strategy_options_t
+rbac_alias(policy_v1beta1_allowed_csi_driver_t);
+// io_k8s_api_policy_v1beta1_allowed_csi_driver_t
+rbac_alias(admissionregistration_v1_webhook_client_config_t);
+// io_k8s_api_admissionregistration_v1_webhook_client_config_t
+rbac_alias(admissionregistration_v1_service_reference_t);
+// io_k8s_api_admissionregistration_v1_service_reference_t
+rbac_alias(networking_v1_ingress_spec_t);
+// io_k8s_api_networking_v1_ingress_spec_t
+rbac_alias(networking_v1_ingress_status_t);
+// io_k8s_api_networking_v1_ingress_status_t
+rbac_alias(extensions_v1beta1_ingress_tls_t);
+// io_k8s_api_extensions_v1beta1_ingress_tls_t
+rbac_alias(flowcontrol_v1beta1_non_resource_policy_rule_t);
+// io_k8s_api_flowcontrol_v1beta1_non_resource_policy_rule_t
+rbac_alias(networking_v1_network_policy_port_t);
+// io_k8s_api_networking_v1_network_policy_port_t
+rbac_alias(storage_v1_volume_attachment_spec_t);
+// io_k8s_api_storage_v1_volume_attachment_spec_t
+rbac_alias(storage_v1_volume_attachment_source_t);
+// io_k8s_api_storage_v1_volume_attachment_source_t
+rbac_alias(storage_v1beta1_csi_driver_spec_t);
+// io_k8s_api_storage_v1beta1_csi_driver_spec_t
+rbac_alias(policy_v1beta1_runtime_class_strategy_options_t);
+// io_k8s_api_policy_v1beta1_runtime_class_strategy_options_t
+rbac_alias(admissionregistration_v1beta1_validating_webhook_t);
+// io_k8s_api_admissionregistration_v1beta1_validating_webhook_t
+rbac_alias(admissionregistration_v1beta1_webhook_client_config_t);
+// io_k8s_api_admissionregistration_v1beta1_webhook_client_config_t
+rbac_alias(flowcontrol_v1beta1_flow_schema_spec_t);
+// io_k8s_api_flowcontrol_v1beta1_flow_schema_spec_t
+rbac_alias(flowcontrol_v1beta1_flow_schema_status_t);
+// io_k8s_api_flowcontrol_v1beta1_flow_schema_status_t
+rbac_alias(networking_v1_ingress_service_backend_t);
+// io_k8s_api_networking_v1_ingress_service_backend_t
+rbac_alias(networking_v1_service_backend_port_t);
+// io_k8s_api_networking_v1_service_backend_port_t
+rbac_alias(rbac_v1alpha1_role_ref_t);
+// io_k8s_api_rbac_v1alpha1_role_ref_t
+rbac_alias(networking_v1beta1_ingress_class_spec_t);
+// io_k8s_api_networking_v1beta1_ingress_class_spec_t
+rbac_alias(networking_v1_ingress_backend_t);
+// io_k8s_api_networking_v1_ingress_backend_t
+rbac_alias(networking_v1_network_policy_peer_t);
+// io_k8s_api_networking_v1_network_policy_peer_t
+rbac_alias(networking_v1_ip_block_t);
+// io_k8s_api_networking_v1_ip_block_t
+rbac_alias(rbac_v1beta1_role_ref_t);
+// io_k8s_api_rbac_v1beta1_role_ref_t
+rbac_alias(storage_v1beta1_volume_node_resources_t);
+// io_k8s_api_storage_v1beta1_volume_node_resources_t
+rbac_alias(flowcontrol_v1beta1_priority_level_configuration_condition_t);
+// io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_condition_t
+rbac_alias(flowcontrol_v1beta1_service_account_subject_t);
+// io_k8s_api_flowcontrol_v1beta1_service_account_subject_t
+rbac_alias(policy_v1beta1_pod_disruption_budget_spec_t);
+// io_k8s_api_policy_v1beta1_pod_disruption_budget_spec_t
+rbac_alias(policy_v1beta1_pod_disruption_budget_status_t);
+// io_k8s_api_policy_v1beta1_pod_disruption_budget_status_t
+rbac_alias(flowcontrol_v1beta1_resource_policy_rule_t);
+// io_k8s_api_flowcontrol_v1beta1_resource_policy_rule_t
+rbac_alias(rbac_v1_aggregation_rule_t);
+// io_k8s_api_rbac_v1_aggregation_rule_t
+rbac_alias(policy_v1beta1_pod_security_policy_spec_t);
+// io_k8s_api_policy_v1beta1_pod_security_policy_spec_t
+rbac_alias(policy_v1beta1_fs_group_strategy_options_t);
+// io_k8s_api_policy_v1beta1_fs_group_strategy_options_t
+rbac_alias(policy_v1beta1_run_as_group_strategy_options_t);
+// io_k8s_api_policy_v1beta1_run_as_group_strategy_options_t
+rbac_alias(policy_v1beta1_run_as_user_strategy_options_t);
+// io_k8s_api_policy_v1beta1_run_as_user_strategy_options_t
+rbac_alias(policy_v1beta1_supplemental_groups_strategy_options_t);
+// io_k8s_api_policy_v1beta1_supplemental_groups_strategy_options_t
+rbac_alias(networking_v1_network_policy_spec_t);
+// io_k8s_api_networking_v1_network_policy_spec_t
+rbac_alias(storage_v1beta1_volume_error_t);
+// io_k8s_api_storage_v1beta1_volume_error_t
+rbac_alias(flowcontrol_v1beta1_subject_t);
+// io_k8s_api_flowcontrol_v1beta1_subject_t
+rbac_alias(flowcontrol_v1beta1_group_subject_t);
+// io_k8s_api_flowcontrol_v1beta1_group_subject_t
+rbac_alias(flowcontrol_v1beta1_user_subject_t);
+// io_k8s_api_flowcontrol_v1beta1_user_subject_t
+rbac_alias(extensions_v1beta1_http_ingress_rule_value_t);
+// io_k8s_api_extensions_v1beta1_http_ingress_rule_value_t
+rbac_alias(networking_v1beta1_ingress_tls_t);
+// io_k8s_api_networking_v1beta1_ingress_tls_t
+rbac_alias(rbac_v1_role_ref_t);
+// io_k8s_api_rbac_v1_role_ref_t
+rbac_alias(admissionregistration_v1beta1_mutating_webhook_t);
+// io_k8s_api_admissionregistration_v1beta1_mutating_webhook_t
+rbac_alias(rbac_v1beta1_subject_t);
+// io_k8s_api_rbac_v1beta1_subject_t
+rbac_alias(networking_v1beta1_ingress_status_t);
+// io_k8s_api_networking_v1beta1_ingress_status_t
+rbac_alias(rbac_v1alpha1_aggregation_rule_t);
+// io_k8s_api_rbac_v1alpha1_aggregation_rule_t
+rbac_alias(storage_v1_csi_node_driver_t);
+// io_k8s_api_storage_v1_csi_node_driver_t
+rbac_alias(storage_v1_volume_node_resources_t);
+// io_k8s_api_storage_v1_volume_node_resources_t
+rbac_alias(storage_v1_csi_node_spec_t);
+// io_k8s_api_storage_v1_csi_node_spec_t
+rbac_alias(flowcontrol_v1beta1_flow_schema_condition_t);
+// io_k8s_api_flowcontrol_v1beta1_flow_schema_condition_t
+rbac_alias(rbac_v1alpha1_subject_t);
+// io_k8s_api_rbac_v1alpha1_subject_t
+rbac_alias(flowcontrol_v1beta1_flow_distinguisher_method_t);
+// io_k8s_api_flowcontrol_v1beta1_flow_distinguisher_method_t
+rbac_alias(storage_v1_csi_driver_spec_t);
+// io_k8s_api_storage_v1_csi_driver_spec_t
+rbac_alias(networking_v1beta1_ingress_backend_t);
+// io_k8s_api_networking_v1beta1_ingress_backend_t
+rbac_alias(storage_v1beta1_csi_node_spec_t);
+// io_k8s_api_storage_v1beta1_csi_node_spec_t
+rbac_alias(networking_v1_ingress_rule_t);
+// io_k8s_api_networking_v1_ingress_rule_t
+rbac_alias(networking_v1_http_ingress_rule_value_t);
+// io_k8s_api_networking_v1_http_ingress_rule_value_t
+rbac_alias(flowcontrol_v1beta1_priority_level_configuration_spec_t);
+// io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_spec_t
+rbac_alias(flowcontrol_v1beta1_priority_level_configuration_status_t);
+// io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_status_t
+rbac_alias(extensions_v1beta1_http_ingress_path_t);
+// io_k8s_api_extensions_v1beta1_http_ingress_path_t
+rbac_alias(extensions_v1beta1_ingress_backend_t);
+// io_k8s_api_extensions_v1beta1_ingress_backend_t
+rbac_alias(storage_v1alpha1_volume_attachment_status_t);
+// io_k8s_api_storage_v1alpha1_volume_attachment_status_t
+rbac_alias(storage_v1alpha1_volume_error_t);
+// io_k8s_api_storage_v1alpha1_volume_error_t
+rbac_alias(networking_v1beta1_ingress_spec_t);
+// io_k8s_api_networking_v1beta1_ingress_spec_t
+rbac_alias(networking_v1_ingress_tls_t);
+// io_k8s_api_networking_v1_ingress_tls_t
+rbac_alias(storage_v1_token_request_t);
+// io_k8s_api_storage_v1_token_request_t
+rbac_alias(storage_v1_volume_error_t);
+// io_k8s_api_storage_v1_volume_error_t
+rbac_alias(discovery_v1beta1_endpoint_port_t);
+// io_k8s_api_discovery_v1beta1_endpoint_port_t
+rbac_alias(extensions_v1beta1_ingress_spec_t);
+// io_k8s_api_extensions_v1beta1_ingress_spec_t
+rbac_alias(admissionregistration_v1beta1_service_reference_t);
+// io_k8s_api_admissionregistration_v1beta1_service_reference_t
+rbac_alias(policy_v1beta1_id_range_t);
+// io_k8s_api_policy_v1beta1_id_range_t
+rbac_alias(networking_v1beta1_http_ingress_rule_value_t);
+// io_k8s_api_networking_v1beta1_http_ingress_rule_value_t
+rbac_alias(storage_v1beta1_volume_attachment_source_t);
+// io_k8s_api_storage_v1beta1_volume_attachment_source_t
+rbac_alias(networking_v1_network_policy_egress_rule_t);
+// io_k8s_api_networking_v1_network_policy_egress_rule_t
+rbac_alias(storage_v1beta1_token_request_t);
+// io_k8s_api_storage_v1beta1_token_request_t
+rbac_alias(flowcontrol_v1beta1_priority_level_configuration_reference_t);
+// io_k8s_api_flowcontrol_v1beta1_priority_level_configuration_reference_t
+rbac_alias(storage_v1alpha1_volume_attachment_spec_t);
+// io_k8s_api_storage_v1alpha1_volume_attachment_spec_t
+rbac_alias(extensions_v1beta1_ingress_rule_t);
+// io_k8s_api_extensions_v1beta1_ingress_rule_t
+rbac_alias(rbac_v1beta1_policy_rule_t);
+// io_k8s_api_rbac_v1beta1_policy_rule_t
+rbac_alias(admissionregistration_v1_validating_webhook_t);
+// io_k8s_api_admissionregistration_v1_validating_webhook_t
+rbac_alias(extensions_v1beta1_ingress_status_t);
+// io_k8s_api_extensions_v1beta1_ingress_status_t
+rbac_alias(policy_v1beta1_allowed_flex_volume_t);
+// io_k8s_api_policy_v1beta1_allowed_flex_volume_t
+rbac_alias(networking_v1beta1_http_ingress_path_t);
+// io_k8s_api_networking_v1beta1_http_ingress_path_t
+rbac_alias(networking_v1beta1_ingress_rule_t);
+// io_k8s_api_networking_v1beta1_ingress_rule_t
+rbac_alias(rbac_v1_subject_t);
+// io_k8s_api_rbac_v1_subject_t
+rbac_alias(storage_v1_volume_attachment_status_t);
+// io_k8s_api_storage_v1_volume_attachment_status_t
+rbac_alias(policy_v1beta1_allowed_host_path_t);
+// io_k8s_api_policy_v1beta1_allowed_host_path_t
+rbac_alias(flowcontrol_v1beta1_policy_rules_with_subjects_t);
+// io_k8s_api_flowcontrol_v1beta1_policy_rules_with_subjects_t
+rbac_alias(rbac_v1alpha1_policy_rule_t);
+// io_k8s_api_rbac_v1alpha1_policy_rule_t
+rbac_alias(admissionregistration_v1_rule_with_operations_t);
+// io_k8s_api_admissionregistration_v1_rule_with_operations_t
+rbac_alias(storage_v1alpha1_volume_attachment_source_t);
+// io_k8s_api_storage_v1alpha1_volume_attachment_source_t
+rbac_alias(flowcontrol_v1beta1_limited_priority_level_configuration_t);
+// io_k8s_api_flowcontrol_v1beta1_limited_priority_level_configuration_t
+rbac_alias(storage_v1beta1_csi_node_driver_t);
+// io_k8s_api_storage_v1beta1_csi_node_driver_t
+rbac_alias(networking_v1_http_ingress_path_t);
+// io_k8s_api_networking_v1_http_ingress_path_t
+rbac_alias(storage_v1beta1_volume_attachment_status_t);
+// io_k8s_api_storage_v1beta1_volume_attachment_status_t
+rbac_alias(networking_v1_network_policy_ingress_rule_t);
+// io_k8s_api_networking_v1_network_policy_ingress_rule_t
+rbac_alias(storage_v1beta1_volume_attachment_spec_t);
+// io_k8s_api_storage_v1beta1_volume_attachment_spec_t
+rbac_alias(admissionregistration_v1_mutating_webhook_t);
+// io_k8s_api_admissionregistration_v1_mutating_webhook_t
+rbac_alias(admissionregistration_v1beta1_rule_with_operations_t);
+// io_k8s_api_admissionregistration_v1beta1_rule_with_operations_t
+rbac_alias(rbac_v1_policy_rule_t);
+// io_k8s_api_rbac_v1_policy_rule_t
+
+
+// apiserver
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_list_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_list_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_list_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_list_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_service_reference_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_service_reference_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_spec_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_spec_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_conversion_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_conversion_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_names_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_names_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_subresources_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_subresources_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_validation_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_validation_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_conversion_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_webhook_client_config_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_webhook_client_config_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_service_reference_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_service_reference_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_json_schema_props_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_json_schema_props_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_validation_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_validation_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_json_schema_props_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_json_schema_props_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_version_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_version_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_subresources_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_subresources_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_webhook_client_config_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_webhook_client_config_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_subresource_scale_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_subresource_scale_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_status_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_status_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_names_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_names_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_column_definition_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_column_definition_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_external_documentation_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_subresource_scale_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_subresource_scale_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_version_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_version_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_conversion_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_condition_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_condition_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_status_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_status_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_spec_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_custom_resource_definition_spec_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1_external_documentation_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1_external_documentation_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_condition_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_definition_condition_t
+apiserver_alias(apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_column_definition_t);
+// io_k8s_apiextensions_apiserver_pkg_apis_apiextensions_v1beta1_custom_resource_column_definition_t
+
+
+// pkg
+pkg_alias(pkg_version_info_t);
+// io_k8s_apimachinery_pkg_version_info_t
+
 
 #ifdef  __cplusplus
 } // end of extern "C" {

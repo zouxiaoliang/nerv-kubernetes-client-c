@@ -1,11 +1,8 @@
 #include <kube_config.h>
 #include <apiClient.h>
 #include <CoreV1API.h>
+#include <alias.h>
 #include <stdio.h>
-#include <errno.h>
-
-#define NS_API(type) io_k8s_api_core_##type
-#define NS_API_META(type) io_k8s_apimachinery_pkg_apis_meta_##type
 
 void list_pod(apiClient_t * apiClient)
 {
@@ -27,7 +24,7 @@ void list_pod(apiClient_t * apiClient)
     if (pod_list) {
         printf("Get pod list:\n");
         listEntry_t *listEntry = NULL;
-        NS_API(v1_pod_t) *pod = NULL;
+        v1_pod_t *pod = NULL;
         list_ForEach(listEntry, pod_list->items) {
             pod = listEntry->data;
             printf("\tThe pod name: %s\n", pod->metadata->name);

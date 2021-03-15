@@ -2,6 +2,7 @@
 #include <kube_config.h>
 #include <apiClient.h>
 #include <CoreV1API.h>
+#include <alias.h>
 #include <stdio.h>
 #include <errno.h>
 
@@ -9,7 +10,7 @@
 
 void list_pod(apiClient_t * apiClient)
 {
-    NS_API(v1_pod_list_t) *pod_list = NULL;
+    v1_pod_list_t *pod_list = NULL;
     pod_list = CoreV1API_listCoreV1NamespacedPod(apiClient,
                                                  "default",     /* namespace */
                                                  NULL,          /* pretty */
@@ -27,7 +28,7 @@ void list_pod(apiClient_t * apiClient)
     if (pod_list) {
         printf("Get pod list:\n");
         listEntry_t *listEntry = NULL;
-        NS_API(v1_pod_t) *pod = NULL;
+        v1_pod_t *pod = NULL;
         list_ForEach(listEntry, pod_list->items) {
             pod = listEntry->data;
             printf("\tThe pod name: %s\n", pod->metadata->name);

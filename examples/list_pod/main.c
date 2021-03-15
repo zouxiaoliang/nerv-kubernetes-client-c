@@ -1,14 +1,13 @@
 #include <kube_config.h>
 #include <apiClient.h>
 #include <CoreV1API.h>
+#include <alias.h>
 #include <stdio.h>
 #include <errno.h>
 
-#define NS_API(type) io_k8s_api_core_##type
-
 void list_pod(apiClient_t * apiClient)
 {
-    NS_API(v1_pod_list_t) *pod_list = NULL;
+    v1_pod_list_t *pod_list = NULL;
     pod_list = CoreV1API_listCoreV1NamespacedPod(apiClient,
                                                  "default",     /*namespace */
                                                  NULL,          /* pretty */

@@ -1,14 +1,14 @@
 #include <kube_config.h>
 #include <apiClient.h>
 #include <CoreV1API.h>
+#include <alias.h>
 #include <stdio.h>
 #include <errno.h>
 
-#define NS_API(type) io_k8s_api_core_##type
 
 void delete_a_pod(apiClient_t * apiClient)
 {
-    NS_API(v1_pod_t) *pod = CoreV1API_deleteCoreV1NamespacedPod(
+    v1_pod_t *pod = CoreV1API_deleteCoreV1NamespacedPod(
         apiClient,
         "test-pod-6",   // char *name
         "default",      // char *namespace
