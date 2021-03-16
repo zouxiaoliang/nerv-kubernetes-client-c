@@ -58,8 +58,11 @@ install(FILES ${EXTERNAL_HEAD_FILES} DESTINATION include/kubernetes-c/kubernetes
 file(GLOB CONFIG_HEAD_FILES "utils/config/*.h")
 install(FILES ${CONFIG_HEAD_FILES} DESTINATION include/kubernetes-c/utils/config )
 
-file(GLOB MODEL_HEAD_FILES "utils/watch/*.h")
-install(FILES ${MODEL_HEAD_FILES} DESTINATION include/kubernetes-c/utisl/watch )
+file(GLOB WATCH_HEAD_FILES "utils/watch/*.h")
+install(FILES ${WATCH_HEAD_FILES} DESTINATION include/kubernetes-c/utils/watch )
+
+file(GLOB UTILS_HEAD_FILES "utils/*.h")
+install(FILES ${UTILS_HEAD_FILES} DESTINATION include/kubernetes-c/utils)
 
 if(SHOW_INSTALL_FILES)
     message(STATUS "include head files: ${PUBLIC_HEAD_FILES}")
@@ -67,5 +70,6 @@ if(SHOW_INSTALL_FILES)
     message(STATUS "model head files: ${MODEL_HEAD_FILES}")
     message(STATUS "external head files: ${EXTERNAL_HEAD_FILES}")
     message(STATUS "config head files: ${CONFIG_HEAD_FILES}")
-    message(STATUS "watch head files: ${MODEL_HEAD_FILES}")
+    message(STATUS "watch head files: ${WATCH_HEAD_FILES}")
+    message(STATUS "utils head files: ${UTILS_HEAD_FILES}")
 endif()
