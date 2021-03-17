@@ -10,6 +10,31 @@ set(CMAKE_BUILD_TYPE Debug)
 
 option(SHOW_INSTALL_FILES "show the install files." OFF)
 
+if (EXISTS /home/linuxbrew/.linuxbrew/)
+    list(APPEND CMAKE_PREFIX_PATH "/home/linuxbrew/.linuxbrew/")
+    include_directories(/home/linuxbrew/.linuxbrew/include)
+    link_directories(/home/linuxbrew/.linuxbrew/lib)
+endif()
+
+find_package(OpenSSL)
+if (OPENSSL_FOUND)
+    message (STATUS "OPENSSL found")
+    set (CMAKE_C_FLAGS "-DOPENSSL")
+    include_directories(${OPENSSL_INCLUDE_DIR})
+    link_directories(${OPENSSL_LIBRARIES})
+    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+else()
+    message (STATUS "OpenSSL Not found.")
+endif()
+
+find_package(CURL 7.58.0 REQUIRED)
+if(CURL_FOUND)
+    include_directories(${CURL_INCLUDE_DIR})
+    set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} ${CURL_LIBRARIES} )
+else(CURL_FOUND)
+    message(FATAL_ERROR "Could not find the CURL library and development files.")
+endif()
+
 add_subdirectory(kubernetes)
 add_subdirectory(examples)
 
