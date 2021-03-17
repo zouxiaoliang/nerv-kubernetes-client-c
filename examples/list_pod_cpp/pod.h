@@ -67,7 +67,7 @@ void del(const std::shared_ptr<Client> &client, const char *name, const char *ns
  * @param ns namespace
  * @param on 事件响应函数
  */
-void watch(const std::shared_ptr<Client> &client, const char *ns, std::function<void(const char *)> on);
+void watch(const std::shared_ptr<Client> &client, const char *ns, std::function<void(const std::string&)> on);
 }}}
 
 

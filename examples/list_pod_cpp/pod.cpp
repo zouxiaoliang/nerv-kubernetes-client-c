@@ -4,6 +4,7 @@
 
 #include "pod.h"
 #include "k8s.h"
+#include <watch_util.h>
 
 namespace nerv {
 namespace k8s {
@@ -156,17 +157,18 @@ void del(const std::shared_ptr<Client> &client, const char *name, const char *ns
  * @param pData
  * @param data_length
  */
-void event_handler(void **pData, long *data_length, void* userptr)
+void event_handler(void* userptr, const char *data)
 {
-
+    auto client = static_cast<Client*>(userptr);
+    client->event_handler()(data);
 }
 
-void watch(const std::shared_ptr<Client> &client, const char *ns, std::function<void(const char *)> on)
+void watch(const std::shared_ptr<Client> &client, const char *ns, std::function<void(const std::string&)> on)
 {
     if (nullptr ==  ns) return;
 
-    client->api()->data_callback_func = event_handler;
-    client->set_watch_on(std::move(on));
+    client->set_event_handler(std::move(on));
+    attach_watch(client->api(), event_handler, client.get());
 
     CoreV1API_listCoreV1NamespacedPod(
             client->api(),

@@ -19,6 +19,7 @@ extern "C" {
 #include <memory>
 #include <functional>
 #include <iostream>
+#include <utility>
 
 namespace nerv {
 namespace k8s {
@@ -26,7 +27,7 @@ namespace k8s {
 class Client
 {
     Client(apiClient_t *api, list_t* token, char *base_path, sslConfig_t *ssl_config):
-            m_api(api), m_token(token), m_base_path(base_path), m_ssl_config(ssl_config), m_fn_on({})
+            m_api(api), m_token(token), m_base_path(base_path), m_ssl_config(ssl_config), m_fn_event_handler({})
     {
 
     }
@@ -40,14 +41,14 @@ public:
         free_client_config(m_base_path, m_ssl_config, m_token);
     }
 
-    void set_watch_on(std::function<void (const char*)> on)
+    void set_event_handler(std::function<void (const std::string&)> event_handler)
     {
-        m_fn_on = on;
+        m_fn_event_handler = std::move(event_handler);
     }
 
-    std::function<void(const char*)> watch_on()
+    std::function<void(const std::string&)> event_handler()
     {
-        return m_fn_on;
+        return m_fn_event_handler;
     }
 
     static std::shared_ptr<Client> create(const char *config_path = nullptr)
@@ -82,7 +83,7 @@ private:
     list_t *m_token;
     char *m_base_path;
     sslConfig_t *m_ssl_config;
-    std::function<void(const char*)> m_fn_on{};
+    std::function<void(const std::string&)> m_fn_event_handler{};
 };
 
 

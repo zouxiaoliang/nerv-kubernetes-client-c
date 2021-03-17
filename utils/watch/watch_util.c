@@ -40,7 +40,7 @@ static int _convert_to_json_array(list_t *json_array, const char *json_string)
     return rc;
 }
 
-void __kubernets_watch_handler(void **pData, long *pDataLen, KUBE_WATCH_EVENT_HANDLER_FUNC event_hander, void *userptr)
+void __kubernets_watch_handler(void **pData, long *pDataLen, KUBE_WATCH_EVENT_HANDLER_FUNC event_handler, void *userptr)
 {
     char *data = *(char **) pData;
 
@@ -55,7 +55,7 @@ void __kubernets_watch_handler(void **pData, long *pDataLen, KUBE_WATCH_EVENT_HA
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, watch_event_list) {
             char *list_item = listEntry->data;
-            event_hander(userptr, list_item);
+            event_handler(userptr, list_item);
         }
 
         free(data);
@@ -76,15 +76,17 @@ typedef struct watch_t
 
 void _kubernets_watch_handler(void **pData, long *pDataLen, void *userptr)
 {
-    watch_t* watch = (watch_t*)userptr;
+    watch_t* watch = (watch_t *)userptr;
     __kubernets_watch_handler(pData, pDataLen, watch->fn, watch->userptr);
 }
 
 void attach_watch(apiClient_t *apiClient, KUBE_WATCH_EVENT_HANDLER_FUNC event_handler, void *userptr)
 {
-    void * watch = alloca(sizeof(watch_t));
+    watch_t* watch = malloc(sizeof(watch_t));
+    watch->userptr = userptr;
+    watch->fn = event_handler;
     apiClient->data_callback_user_ptr = watch;
-    apiClient->data_callback_func = _kubernets_watch_handler;
+    apiClient->data_callback_func = &_kubernets_watch_handler;
 }
 
 void detach_watch(apiClient_t *apiClient)

@@ -25,5 +25,9 @@ int main()
 
     apiClient_unsetupGlobalEnv();
 
+    nerv::k8s::pod::watch(client, ns, [](const std::string &event){
+        std::cout << event << std::endl;
+    });
+
     return 0;
 }
