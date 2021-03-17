@@ -3,7 +3,7 @@
 
 #define NS_API(type) io_k8s_api_core_##type
 #define function_alias(name)
-
+namespace nerv {
 namespace k8s {
 
 // core
@@ -500,12 +500,12 @@ typedef struct io_k8s_api_events_v1beta1_event_list_t v1beta1_event_list_t;
 typedef struct io_k8s_api_events_v1beta1_event_series_t v1beta1_event_series_t;
 // io_k8s_api_events_v1beta1_event_series_t
 
-typedef struct io_k8s_api_events_v1_event_series_t v1_event_series_t;;
-// io_k8s_api_events_v1_event_series_t
-typedef struct io_k8s_api_events_v1_event_t v1_event_t;;
-// io_k8s_api_events_v1_event_t
 typedef struct io_k8s_api_events_v1_event_list_t v1_event_list_t;;
 // io_k8s_api_events_v1_event_list_t
+typedef struct io_k8s_api_events_v1_event_t v1_event_t;;
+// io_k8s_api_events_v1_event_t
+typedef struct io_k8s_api_events_v1_event_series_t v1_event_series_t;;
+// io_k8s_api_events_v1_event_series_t
 }
 
 // node
@@ -1303,24 +1303,25 @@ typedef struct io_k8s_api_networking_v1_network_policy_ingress_rule_t v1_network
 
 typedef struct io_k8s_api_networking_v1beta1_ingress_backend_t v1beta1_ingress_backend_t;;
 // io_k8s_api_networking_v1beta1_ingress_backend_t
-typedef struct io_k8s_api_networking_v1beta1_ingress_spec_t v1beta1_ingress_spec_t;;
-// io_k8s_api_networking_v1beta1_ingress_spec_t
-typedef struct io_k8s_api_networking_v1beta1_ingress_list_t v1beta1_ingress_list_t;;
-// io_k8s_api_networking_v1beta1_ingress_list_t
-typedef struct io_k8s_api_networking_v1beta1_http_ingress_rule_value_t v1beta1_http_ingress_rule_value_t;;
-// io_k8s_api_networking_v1beta1_http_ingress_rule_value_t
 typedef struct io_k8s_api_networking_v1beta1_ingress_rule_t v1beta1_ingress_rule_t;;
 // io_k8s_api_networking_v1beta1_ingress_rule_t
 typedef struct io_k8s_api_networking_v1beta1_ingress_status_t v1beta1_ingress_status_t;;
 // io_k8s_api_networking_v1beta1_ingress_status_t
-typedef struct io_k8s_api_networking_v1beta1_ingress_t v1beta1_ingress_t;;
-// io_k8s_api_networking_v1beta1_ingress_t
-typedef struct io_k8s_api_networking_v1beta1_ingress_tls_t v1beta1_ingress_tls_t;;
-// io_k8s_api_networking_v1beta1_ingress_tls_t
 typedef struct io_k8s_api_networking_v1beta1_http_ingress_path_t v1beta1_http_ingress_path_t;;
 // io_k8s_api_networking_v1beta1_http_ingress_path_t
+typedef struct io_k8s_api_networking_v1beta1_ingress_spec_t v1beta1_ingress_spec_t;;
+// io_k8s_api_networking_v1beta1_ingress_spec_t
+typedef struct io_k8s_api_networking_v1beta1_ingress_tls_t v1beta1_ingress_tls_t;;
+// io_k8s_api_networking_v1beta1_ingress_tls_t
+typedef struct io_k8s_api_networking_v1beta1_ingress_t v1beta1_ingress_t;;
+// io_k8s_api_networking_v1beta1_ingress_t
+typedef struct io_k8s_api_networking_v1beta1_http_ingress_rule_value_t v1beta1_http_ingress_rule_value_t;;
+// io_k8s_api_networking_v1beta1_http_ingress_rule_value_t
+typedef struct io_k8s_api_networking_v1beta1_ingress_list_t v1beta1_ingress_list_t;;
+// io_k8s_api_networking_v1beta1_ingress_list_t
 }
 
+}
 }
 
 #endif // ALIAS_H

@@ -59,3 +59,7 @@ add_executable(multi_thread
     multi_thread/mt.h
     )
 target_link_libraries(multi_thread nerv-kubernetes)
+
+add_executable(list_pod_cpp
+    list_pod_cpp/pod.cpp list_pod_cpp/main.cpp)
+target_link_libraries(list_pod_cpp nerv-kubernetes)
